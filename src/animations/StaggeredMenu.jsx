@@ -1,6 +1,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
+import cc from '../assets/cc.png';
 
 export const StaggeredMenu = ({
     position = 'right',
@@ -373,7 +374,7 @@ export const StaggeredMenu = ({
                 >
                     <div className="sm-logo flex items-center select-none pointer-events-auto" aria-label="Logo">
                         <img
-                            src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
+                            src={logoUrl || './assets/cc.png'}
                             alt="Logo"
                             className="sm-logo-img block h-8 w-auto object-contain"
                             draggable={false}

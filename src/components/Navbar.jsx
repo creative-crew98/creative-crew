@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Sparkles, Phone } from 'lucide-react'
 import { navLinks } from '../data/siteData'
-import logo from '../assets/cc.png'
+import cc from '../assets/cc.png'
 import StaggeredMenu from '../animations/StaggeredMenu'
 
 const socialItems = [
@@ -87,7 +87,9 @@ export default function Navbar() {
           openMenuButtonColor="#0a0a12"
           changeMenuColorOnOpen
           colors={['#B497CF', '#5227FF']}
-          logoUrl="./cc.png"
+          logoUrl={cc}
+          logoAlt="Creative Crew"
+          logoWidth={32}
           accentColor="#7c3aed"
           isFixed
         />
