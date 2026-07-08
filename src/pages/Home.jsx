@@ -1,0 +1,451 @@
+import { Link } from 'react-router-dom'
+import {
+  Rocket, Share2, Globe, Code2, GraduationCap, ShoppingBag, Palette, Clapperboard,
+  ArrowUpRight, Check, ChevronDown, TrendingUp, Users, Award, Headphones,
+} from 'lucide-react'
+import { useState, useEffect } from 'react'
+import PageTransition from '../components/PageTransition'
+import Reveal from '../components/Reveal'
+import SectionHeading from '../components/SectionHeading'
+import CtaBanner from '../components/CtaBanner'
+import TestimonialsSection from '../components/TestimonialsSection'
+import BlurText from '../animations/BlurText'
+import {
+  capabilities, stats, processSteps, trustedBrands, faqs, portfolioItems,
+} from '../data/siteData'
+
+const iconMap = { Rocket, Share2, Globe, Code2, GraduationCap, ShoppingBag, Palette, Clapperboard }
+const statIconMap = [Users, Award, TrendingUp, Headphones]
+
+export default function Home() {
+  return (
+    <PageTransition>
+      <Hero />
+      <TrustedBy />
+      <Capabilities />
+      <Difference />
+      <Process />
+      <FeaturedWork />
+      <TestimonialsSection />
+      <Faq />
+      <CtaBanner />
+    </PageTransition>
+  )
+}
+
+function Hero() {
+  const [accentVisible, setAccentVisible] = useState(false)
+  const [tailVisible, setTailVisible] = useState(false)
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setAccentVisible(true), 700)
+    const t2 = setTimeout(() => setTailVisible(true), 1000)
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
+  }, [])
+
+  return (
+    <section className="relative pt-40 pb-28 px-6 overflow-hidden bg-[#0a0a12]">
+      {/* Ambient background: radial glow + faint dot grid, masked to fade at edges */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(124,58,237,0.28),transparent_55%)]" />
+      <div
+        className="absolute inset-0 bg-dot-grid bg-[length:28px_28px] opacity-[0.15]"
+        style={{ maskImage: 'radial-gradient(ellipse at top, black, transparent 70%)' }}
+      />
+      <div className="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-fuchsia-600/20 blur-[120px]" />
+
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <Reveal>
+          <p className="inline-flex items-center gap-2 text-[12px] text-white/60 border border-white/10 bg-white/[0.03] rounded-full px-3.5 py-1.5 mb-7">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+            </span>
+            Now booking Q3 — 2 slots left
+          </p>
+
+          <h1 className="text-5xl sm:text-[64px] font-bold text-white tracking-[-0.03em] leading-[1.03] flex flex-wrap gap-x-3">
+            <BlurText
+              text="We build digital"
+              delay={120}
+              animateBy="words"
+              direction="top"
+              className="text-white"
+            />
+            <span
+              className={`bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-300 bg-clip-text text-transparent transition-opacity duration-500 ${accentVisible ? 'opacity-100' : 'opacity-0'
+                }`}
+            >
+              experiences
+            </span>
+            <span
+              className={`text-white transition-opacity duration-500 ${tailVisible ? 'opacity-100' : 'opacity-0'
+                }`}
+            >
+              that grow businesses.
+            </span>
+          </h1>
+
+          <p className="mt-6 text-white/55 text-[15.5px] max-w-lg leading-relaxed">
+            A premium studio for funnels, marketing, web, software, LMS & POS. We turn ambition
+            into revenue with obsessive craft.
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-[14px] font-semibold px-6 py-3.5 shadow-glow hover:shadow-[0_0_70px_-10px_rgba(124,58,237,0.7)] transition-shadow"
+            >
+              Book free consultation
+              <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+            <Link
+              to="/portfolio"
+              className="group inline-flex items-center gap-1.5 text-white/80 text-[14px] font-medium px-2 py-3.5 hover:text-white transition-colors"
+            >
+              Explore portfolio
+              <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </div>
+
+          {/* Social proof: avatar stack + rating, more premium than bare stat row */}
+          <div className="mt-11 flex items-center gap-4">
+            <div className="flex -space-x-2.5">
+              {['from-violet-500 to-fuchsia-500', 'from-fuchsia-500 to-orange-400', 'from-cyan-400 to-violet-500', 'from-emerald-400 to-cyan-500'].map((g, i) => (
+                <span
+                  key={i}
+                  className={`w-8 h-8 rounded-full bg-gradient-to-br ${g} border-2 border-[#0a0a12] flex items-center justify-center text-[10px] font-bold text-white`}
+                >
+                  {['SC', 'MW', 'PN', 'DS'][i]}
+                </span>
+              ))}
+            </div>
+            <div>
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg key={i} width="11" height="11" viewBox="0 0 20 20" className="fill-violet-400">
+                    <path d="M10 1l2.7 6.3 6.8.6-5.2 4.5 1.6 6.6L10 15.7 4.1 19l1.6-6.6L.5 7.9l6.8-.6L10 1z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-[12px] text-white/45 mt-0.5">Trusted by 250+ founders</p>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <DashboardMock />
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+// Animated "growth dashboard" mockup — a smooth SVG line chart with a
+// drawing-in animation, replacing a plain bar chart for a more premium feel.
+function DashboardMock() {
+  return (
+    <div className="relative rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-sm p-6 shadow-glow">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <p className="text-[13px] font-semibold text-white">Growth overview</p>
+          <p className="text-[11px] text-white/40">Last 30 days</p>
+        </div>
+        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-400/10 rounded-full px-2.5 py-1">
+          <TrendingUp size={11} /> +38.4%
+        </span>
+      </div>
+
+      <div className="grid grid-cols-3 gap-3 mb-6">
+        {[['Revenue', '$142k'], ['Reach', '2.4M'], ['ROAS', '6.8x']].map(([l, v]) => (
+          <div key={l} className="rounded-xl bg-white/5 border border-white/10 p-3">
+            <p className="text-[10px] text-white/40 mb-1">{l}</p>
+            <p className="text-sm font-bold text-white">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="h-32 rounded-xl bg-gradient-to-t from-violet-500/10 to-transparent border border-white/10 p-4">
+        <svg viewBox="0 0 300 100" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#a78bfa" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="chartStroke" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#7c3aed" />
+              <stop offset="100%" stopColor="#d946ef" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,80 L37,65 L75,72 L112,45 L150,52 L187,25 L225,35 L262,12 L300,18"
+            fill="none"
+            stroke="url(#chartStroke)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeDasharray="400"
+            className="animate-draw-line"
+          />
+          <path
+            d="M0,80 L37,65 L75,72 L112,45 L150,52 L187,25 L225,35 L262,12 L300,18 L300,100 L0,100 Z"
+            fill="url(#chartFill)"
+            stroke="none"
+          />
+        </svg>
+      </div>
+
+      {/* Floating badge for extra depth */}
+      <div className="absolute -bottom-4 -left-4 rounded-xl border border-white/10 bg-[#141221] px-3.5 py-2.5 shadow-card hidden sm:block">
+        <p className="text-[10px] text-white/40">Conversion rate</p>
+        <p className="text-sm font-bold text-emerald-400">+12.4%</p>
+      </div>
+    </div>
+  )
+}
+
+function TrustedBy() {
+  // Duplicate the list so the marquee can loop seamlessly at -50%.
+  const loop = [...trustedBrands, ...trustedBrands]
+  return (
+    <section className="bg-[#0a0a12] pb-24 px-6 overflow-hidden">
+      <Reveal>
+        <p className="text-center text-[11px] tracking-[0.2em] uppercase text-white/30 mb-8">
+          Trusted by ambitious brands
+        </p>
+      </Reveal>
+      <div
+        className="relative max-w-5xl mx-auto overflow-hidden"
+        style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+      >
+        <div className="flex w-max gap-16 animate-marquee">
+          {loop.map((b, i) => (
+            <span key={i} className="text-white/35 hover:text-white/70 font-semibold text-lg tracking-wide whitespace-nowrap transition-colors">
+              {b}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Capabilities() {
+  return (
+    <section className="relative bg-[#fafafa] py-24 px-6 overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-200/30 blur-[100px] rounded-full" />
+      {/* rest unchanged, wrap content in <div className="relative"> if needed */}
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 items-end mb-14">
+          <Reveal>
+            <SectionHeading eyebrow="Capabilities" title="Everything you need," accent="under one roof" align="left" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-[#0a0a12]/60 text-[15px] leading-relaxed">
+              From first pixel to last conversion — a senior team, obsessive craft, and outcomes
+              that outperform your last agency.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {capabilities.map((c, i) => {
+            const Icon = iconMap[c.icon]
+            return (
+              <Reveal key={c.title} delay={i * 0.05}>
+                <div className="group relative h-full rounded-2xl border border-[#0a0a12]/10 bg-white p-6 overflow-hidden hover:shadow-card hover:-translate-y-1 hover:border-transparent transition-all duration-300">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-violet-50 to-fuchsia-50 transition-opacity duration-300" />
+                  <div className="relative">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0a0a12] to-[#241b3d] flex items-center justify-center group-hover:from-violet-600 group-hover:to-fuchsia-500 transition-colors duration-300">
+                        <Icon size={18} className="text-white" />
+                      </span>
+                      <span className="text-[11px] font-semibold text-[#0a0a12]/20 group-hover:text-violet-400 transition-colors">
+                        0{i + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-[15px] font-semibold text-[#0a0a12] mb-1.5">{c.title}</h3>
+                    <p className="text-[13px] text-[#0a0a12]/55 leading-relaxed mb-4">{c.desc}</p>
+                    <Link
+                      to="/services"
+                      className="text-[13px] font-medium text-violet-600 inline-flex items-center gap-1 hover:gap-1.5 transition-all"
+                    >
+                      Read more <ArrowUpRight size={13} />
+                    </Link>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Difference() {
+  return (
+    <section className="relative bg-[#0d0b16] py-24 px-6 overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-violet-600/10 blur-[100px]" />
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+        <Reveal>
+          <SectionHeading eyebrow="Why Creative Crew" title="The difference is in the" accent="details" align="left" dark />
+          <p className="text-white/55 text-[15px] leading-relaxed mt-5 mb-8 max-w-md">
+            We're not a service factory. We're a small studio of senior designers, engineers, and
+            marketers who care too much.
+          </p>
+          <ul className="space-y-3.5">
+            {['Senior team — no juniors on your project', 'Fixed timelines, no surprises', 'Weekly Loom updates + Slack channel', 'Design that ships, engineering that scales'].map((f) => (
+              <li key={f} className="flex items-start gap-3 text-[14px] text-white/70">
+                <span className="w-5 h-5 rounded-full bg-violet-500/15 flex items-center justify-center mt-0.5 shrink-0">
+                  <Check size={11} className="text-violet-400" />
+                </span>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="grid grid-cols-2 gap-5">
+            {stats.map((s, i) => {
+              const Icon = statIconMap[i % statIconMap.length]
+              return (
+                <div
+                  key={s.label}
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:bg-white/[0.05] hover:border-white/20 transition-colors duration-300"
+                >
+                  <Icon size={16} className="text-violet-400 mb-3" />
+                  <p className="text-3xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                    {s.value}
+                  </p>
+                  <p className="text-xs text-white/50 mt-1 uppercase tracking-wide">{s.label}</p>
+                </div>
+              )
+            })}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Process() {
+  return (
+    <section className="bg-white py-24 px-6">
+      <div className="max-w-5xl mx-auto">
+        <Reveal>
+          <SectionHeading eyebrow="Our process" title="A six-step system," accent="engineered to win" align="left" />
+        </Reveal>
+
+        <div className="relative mt-14 ml-3">
+          <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-violet-400 via-fuchsia-300 to-transparent" />
+          {processSteps.map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.06} className="relative pl-10 pb-12 last:pb-0">
+              <span className="absolute -left-[9px] top-1 w-[18px] h-[18px] rounded-full bg-white border-2 border-violet-500 flex items-center justify-center">
+                <span className="w-[7px] h-[7px] rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500" />
+              </span>
+              <p className="text-xs font-semibold text-violet-500 mb-1">{s.n}</p>
+              <h3 className="text-xl font-bold text-[#0a0a12] mb-1">{s.title}</h3>
+              <p className="text-[14px] text-[#0a0a12]/55 max-w-md">{s.desc}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function FeaturedWork() {
+  const featured = portfolioItems.slice(0, 4)
+  return (
+    <section className="bg-[#0a0a12] py-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
+          <Reveal>
+            <SectionHeading eyebrow="Selected work" title="Work we're" accent="proud of" align="left" dark />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Link
+              to="/portfolio"
+              className="group inline-flex items-center gap-1.5 text-white/70 text-[13px] font-medium hover:text-white transition-colors"
+            >
+              View all
+              <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </Reveal>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-5">
+          {featured.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.08}>
+              <Link to="/portfolio" className="group block relative rounded-2xl overflow-hidden aspect-[4/3]">
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5">
+                  <p className="inline-block text-[10.5px] uppercase tracking-wide text-violet-200 bg-white/10 backdrop-blur-sm rounded-full px-2.5 py-1 mb-2">
+                    {p.category}
+                  </p>
+                  <p className="text-white font-semibold">{p.title}</p>
+                </div>
+                <span className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-white transition-all">
+                  <ArrowUpRight size={14} className="text-white group-hover:text-[#0a0a12] transition-colors" />
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Faq() {
+  const [openIndex, setOpenIndex] = useState(0)
+  return (
+    <section className="bg-[#0a0a12] py-24 px-6">
+      <div className="max-w-3xl mx-auto">
+        <Reveal>
+          <SectionHeading eyebrow="FAQ" title="Questions," accent="answered" dark />
+        </Reveal>
+        <div className="mt-12 space-y-3">
+          {faqs.map((f, i) => {
+            const isOpen = openIndex === i
+            return (
+              <Reveal key={f.q} delay={i * 0.04}>
+                <div className={`rounded-xl border overflow-hidden transition-colors duration-300 ${isOpen ? 'border-violet-400/40 bg-white/[0.05]' : 'border-white/10 bg-white/[0.03]'}`}>
+                  <button
+                    className="w-full flex items-center justify-between px-5 py-4 text-left"
+                    onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="text-[14px] font-medium text-white">{f.q}</span>
+                    <span className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ml-4 transition-colors duration-300 ${isOpen ? 'bg-gradient-to-br from-violet-500 to-fuchsia-500' : 'bg-white/10'}`}>
+                      <ChevronDown
+                        size={13}
+                        className={`text-white transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                      />
+                    </span>
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                      }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="px-5 pb-4 text-[13.5px] text-white/55 leading-relaxed">{f.a}</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
