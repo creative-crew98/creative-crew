@@ -11,7 +11,7 @@ export const StaggeredMenu = ({
     displaySocials = true,
     displayItemNumbering = true,
     className,
-    logoUrl = '/src/assets/logos/reactbits-gh-white.svg',
+    logoUrl = './assets/cc.png',
     menuButtonColor = '#fff',
     openMenuButtonColor = '#fff',
     changeMenuColorOnOpen = true,
@@ -508,41 +508,70 @@ export const StaggeredMenu = ({
 .sm-scope .sm-logo-img { display: block; height: 32px; width: auto; object-fit: contain; }
 .sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.3rem; background: transparent; border: none; cursor: pointer; color: #e9e9ef; font-weight: 500; line-height: 1; overflow: visible; }
 .sm-scope .sm-toggle:focus-visible { outline: 2px solid #ffffffaa; outline-offset: 4px; border-radius: 4px; }
-.sm-scope .sm-line:last-of-type { margin-top: 6px; }
 .sm-scope .sm-toggle-textWrap { position: relative; margin-right: 0.5em; display: inline-block; height: 1em; overflow: hidden; white-space: nowrap; width: var(--sm-toggle-width, auto); min-width: var(--sm-toggle-width, auto); }
 .sm-scope .sm-toggle-textInner { display: flex; flex-direction: column; line-height: 1; }
 .sm-scope .sm-toggle-line { display: block; height: 1em; line-height: 1; }
 .sm-scope .sm-icon { position: relative; width: 14px; height: 14px; flex: 0 0 14px; display: inline-flex; align-items: center; justify-content: center; will-change: transform; }
-.sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 10; }
+
+.sm-scope .staggered-menu-panel {
+  position: absolute; top: 0; right: 0;
+  width: clamp(280px, 86vw, 420px); height: 100%;
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgba(124, 58, 237, 0.28), transparent 60%),
+    #0a0a12;
+  border-left: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  display: flex; flex-direction: column; padding: 6em 2em 2em 2em;
+  overflow-y: auto; z-index: 10;
+}
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
-.sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(260px, 38vw, 420px); pointer-events: none; z-index: 5; }
+
+.sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(280px, 86vw, 420px); pointer-events: none; z-index: 5; }
 .sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }
 .sm-scope .sm-prelayer { position: absolute; top: 0; right: 0; height: 100%; width: 100%; transform: translateX(0); }
-.sm-scope .sm-socials { padding-top: 1rem; display: flex; flex-direction: column; gap: 0.50rem; }
-.sm-scope .sm-socials { padding-top: 1rem; display: flex; flex-direction: column; gap: 0.50rem; }
-.sm-scope .sm-socials-title { margin: 0; font-size: 1rem; font-weight: 500; color: var(--sm-accent, #ff0000); }
-.sm-scope .sm-socials-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: row; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.sm-scope .sm-socials-list .sm-socials-link { opacity: 1; transition: opacity 0.3s ease; }
+
+.sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
+.sm-scope .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.sm-scope .sm-panel-item {
+  position: relative; color: #f5f4fb; font-weight: 600; font-size: 3rem; cursor: pointer;
+  line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase;
+  transition: color 0.25s ease; display: inline-block; text-decoration: none; padding: 0.15em 1.6em 0.15em 0;
+}
+.sm-scope .sm-panel-itemLabel { display: inline-block; will-change: transform; transform-origin: 50% 100%; }
+.sm-scope .sm-panel-item:hover,
+.sm-scope .sm-panel-item:focus-visible { color: var(--sm-accent, #c4b5fd); }
+.sm-scope .sm-panel-item::before {
+  content: ''; position: absolute; left: 0; bottom: 0.22em; height: 2px; width: 100%;
+  background: var(--sm-accent, #c4b5fd); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.7;
+}
+.sm-scope .sm-panel-item:hover::before,
+.sm-scope .sm-panel-item:focus-visible::before { transform: scaleX(1); }
+
+.sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
+.sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after {
+  counter-increment: smItem; content: counter(smItem, decimal-leading-zero);
+  position: absolute; top: 0.3em; right: 0; font-size: 12px; font-weight: 500;
+  color: var(--sm-accent, #c4b5fd); letter-spacing: 0.04em; pointer-events: none; user-select: none;
+  opacity: var(--sm-num-opacity, 0);
+}
+
+.sm-scope .sm-socials { padding-top: 1.5rem; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 0.6rem; }
+.sm-scope .sm-socials-title { margin: 0; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.sm-scope .sm-socials-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: row; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+.sm-scope .sm-socials-list .sm-socials-link { opacity: 1; transition: opacity 0.3s ease, color 0.3s ease; }
 .sm-scope .sm-socials-list:hover .sm-socials-link:not(:hover) { opacity: 0.35; }
 .sm-scope .sm-socials-list:focus-within .sm-socials-link:not(:focus-visible) { opacity: 0.35; }
-.sm-scope .sm-socials-list .sm-socials-link:hover,
-.sm-scope .sm-socials-list .sm-socials-link:focus-visible { opacity: 1; }
-.sm-scope .sm-socials-link:focus-visible { outline: 2px solid var(--sm-accent, #ff0000); outline-offset: 3px; }
-.sm-scope .sm-socials-link { font-size: 1.2rem; font-weight: 500; color: #111; text-decoration: none; position: relative; padding: 2px 0; display: inline-block; transition: color 0.3s ease, opacity 0.3s ease; }
-.sm-scope .sm-socials-link:hover { color: var(--sm-accent, #ff0000); }
-.sm-scope .sm-panel-title { margin: 0; font-size: 1rem; font-weight: 600; color: #fff; text-transform: uppercase; }
-.sm-scope .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-.sm-scope .sm-panel-item { position: relative; color: #000; font-weight: 600; font-size: 3.5rem; cursor: pointer; line-height: 1; letter-spacing: -0.5px; text-transform: uppercase; transition: background 0.25s, color 0.25s; display: inline-block; text-decoration: none; padding-right: 1.4em; }
-.sm-scope .sm-panel-itemLabel { display: inline-block; will-change: transform; transform-origin: 50% 100%; }
-.sm-scope .sm-panel-item:hover { color: var(--sm-accent, #ff0000); }
-.sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
-.sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { counter-increment: smItem; content: counter(smItem, decimal-leading-zero); position: absolute; top: 0.15em; right: 1.6em; font-size: 13px; font-weight: 400; color: var(--sm-accent, #ff0000); letter-spacing: 0; pointer-events: none; user-select: none; opacity: var(--sm-num-opacity, 0); }
-@media (max-width: 480px) { .sm-scope .sm-panel-item { font-size: 3rem; } }
-@media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
-@media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
+.sm-scope .sm-socials-link:hover,
+.sm-scope .sm-socials-link:focus-visible { opacity: 1; color: var(--sm-accent, #c4b5fd); }
+.sm-scope .sm-socials-link:focus-visible { outline: 2px solid var(--sm-accent, #c4b5fd); outline-offset: 3px; }
+.sm-scope .sm-socials-link { font-size: 0.95rem; font-weight: 500; color: rgba(255,255,255,0.75); text-decoration: none; position: relative; padding: 2px 0; display: inline-block; transition: color 0.3s ease, opacity 0.3s ease; }
+
+@media (max-width: 480px) { .sm-scope .sm-panel-item { font-size: 2.4rem; } }
+@media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } }
+@media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } }
       `}</style>
         </div>
     );

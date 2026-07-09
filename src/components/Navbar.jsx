@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Sparkles, Phone } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { navLinks } from '../data/siteData'
 import cc from '../assets/cc.png'
 import StaggeredMenu from '../animations/StaggeredMenu'
@@ -34,10 +34,8 @@ export default function Navbar() {
           }`}
       >
         <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-8 h-[72px]">
-          <Link to="/" className="flex items-center gap-2 shrink-0">
-            <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-              <Sparkles size={14} className="text-white" strokeWidth={2.5} />
-            </span>
+          <Link to="/" className="flex items-center gap-2.5 shrink-0">
+            <img src={cc} alt="Creative Crew" className="h-8 w-auto object-contain" draggable={false} />
             <span className="text-white font-semibold tracking-tight text-[15px]">Creative Crew</span>
           </Link>
 
@@ -57,8 +55,8 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
-
-            <a href="tel:+14155550142"
+            <a
+              href="tel:+14155550142"
               className="flex items-center justify-center w-8 h-8 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/30 transition-colors"
               aria-label="Call us"
             >
@@ -74,29 +72,7 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* Mobile top bar — gives the header actual presence instead of a bare toggle in a corner */}
-      <div
-        className={`md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-16 transition-all duration-300 ${scrolled ? 'bg-[#0a0a12]/90 backdrop-blur-md border-b border-white/10' : 'bg-gradient-to-b from-[#0a0a12]/70 to-transparent'
-          }`}
-      >
-        <Link to="/" className="flex items-center gap-2">
-          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shadow-[0_0_18px_rgba(124,58,237,0.5)]">
-            <Sparkles size={14} className="text-white" strokeWidth={2.5} />
-          </span>
-          <span className="text-white font-semibold tracking-tight text-[15px]">Creative Crew</span>
-        </Link>
-
-
-        <a
-          href="tel:+14155550142"
-          className="flex items-center justify-center w-9 h-9 rounded-full border border-white/15 text-white/80 hover:text-white hover:border-white/30 transition-colors"
-          aria-label="Call us"
-        >
-          <Phone size={14} />
-        </a>
-      </div>
-
-      {/* StaggeredMenu owns the toggle + panel, positioned over the top bar */}
+      {/* Mobile — StaggeredMenu owns its own logo, toggle, and panel */}
       <div className="md:hidden">
         <StaggeredMenu
           position="right"
@@ -105,13 +81,13 @@ export default function Navbar() {
           displaySocials
           displayItemNumbering
           menuButtonColor="#ffffff"
-          openMenuButtonColor="#0a0a12"
-          changeMenuColorOnOpen
-          colors={['#B497CF', '#5227FF', '#7c3aed']}
+          openMenuButtonColor="#ffffff"
+          changeMenuColorOnOpen={false}
+          colors={['#7c3aed', '#0a0a12']}
           logoUrl={cc}
           logoAlt="Creative Crew"
           logoWidth={32}
-          accentColor="#7c3aed"
+          accentColor="#c4b5fd"
           isFixed
         />
       </div>
