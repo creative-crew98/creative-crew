@@ -234,10 +234,47 @@ function TrustedBy() {
 function Capabilities() {
   return (
     <section className="relative bg-[#fafafa] py-24 px-6 overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-200/30 blur-[100px] rounded-full" />
-      {/* rest unchanged, wrap content in <div className="relative"> if needed */}
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 items-end mb-14">
+      {/* soft glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-200/25 blur-[110px] rounded-full" />
+
+      {/* decorative network graphic, top-right */}
+      <svg
+        className="absolute top-8 right-0 w-[440px] h-[300px] opacity-60 pointer-events-none hidden lg:block"
+        viewBox="0 0 420 280"
+        fill="none"
+      >
+        <g stroke="url(#netGrad)" strokeWidth="1">
+          <line x1="40" y1="60" x2="150" y2="20" />
+          <line x1="150" y1="20" x2="260" y2="70" />
+          <line x1="260" y1="70" x2="380" y2="40" />
+          <line x1="150" y1="20" x2="180" y2="120" />
+          <line x1="180" y1="120" x2="90" y2="150" />
+          <line x1="180" y1="120" x2="300" y2="150" />
+          <line x1="260" y1="70" x2="300" y2="150" />
+          <line x1="300" y1="150" x2="380" y2="180" />
+          <line x1="90" y1="150" x2="60" y2="220" />
+        </g>
+        <g fill="#a78bfa">
+          <circle cx="40" cy="60" r="2.5" />
+          <circle cx="150" cy="20" r="3.5" />
+          <circle cx="260" cy="70" r="2.5" />
+          <circle cx="380" cy="40" r="2.5" />
+          <circle cx="180" cy="120" r="3.5" />
+          <circle cx="90" cy="150" r="2.5" />
+          <circle cx="300" cy="150" r="3.5" />
+          <circle cx="380" cy="180" r="2.5" />
+          <circle cx="60" cy="220" r="2.5" />
+        </g>
+        <defs>
+          <linearGradient id="netGrad" x1="0" y1="0" x2="420" y2="280">
+            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#e879f9" stopOpacity="0.15" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div className="max-w-7xl mx-auto relative">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 items-end mb-16">
           <Reveal>
             <SectionHeading eyebrow="Capabilities" title="Everything you need," accent="under one roof" align="left" />
           </Reveal>
@@ -249,14 +286,21 @@ function Capabilities() {
           </Reveal>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {capabilities.map((c, i) => {
             const Icon = iconMap[c.icon]
             return (
               <Reveal key={c.title} delay={i * 0.05}>
-                <div className="group relative h-full rounded-2xl border border-[#0a0a12]/10 bg-white p-6 overflow-hidden hover:shadow-card hover:-translate-y-1 hover:border-transparent transition-all duration-300">
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-violet-50 to-fuchsia-50 transition-opacity duration-300" />
-                  <div className="relative">
+                <div className="group relative h-full rounded-2xl border border-[#0a0a12]/10 bg-white p-6 pt-8 overflow-visible transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(124,58,237,0.25)] hover:-translate-y-1 hover:border-violet-200">
+                  {/* CAPABILITIES badge — sits above the hover overlay */}
+                  <span className="absolute -top-3 left-6 z-20 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-[#0a0a12] text-white shadow-sm group-hover:bg-violet-600 transition-colors duration-300">
+                    Capabilities
+                  </span>
+
+                  {/* hover overlay — kept below badge and content */}
+                  <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-violet-50/80 to-fuchsia-50/60 transition-opacity duration-300" />
+
+                  <div className="relative z-10">
                     <div className="flex items-center justify-between mb-4">
                       <span className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0a0a12] to-[#241b3d] flex items-center justify-center group-hover:from-violet-600 group-hover:to-fuchsia-500 transition-colors duration-300">
                         <Icon size={18} className="text-white" />
@@ -283,7 +327,6 @@ function Capabilities() {
     </section>
   )
 }
-
 function Difference() {
   return (
     <section className="relative bg-[#0d0b16] py-24 px-6 overflow-hidden">
