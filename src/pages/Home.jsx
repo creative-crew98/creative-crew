@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import {
   Rocket, Share2, Globe, Code2, GraduationCap, ShoppingBag, Palette, Clapperboard,
   ArrowUpRight, Check, ChevronDown, TrendingUp, Users, Award, Headphones,
@@ -231,13 +232,71 @@ function TrustedBy() {
   )
 }
 
+import { motion } from "framer-motion"
+import { useState } from "react"
+
+function CapabilityCard({ c, i, Icon }) {
+  const [active, setActive] = useState(false)
+
+  return (
+    <motion.div
+      className={`group relative h-full rounded-2xl border bg-white p-6 pt-8 overflow-visible transition-all duration-300
+        hover:shadow-[0_20px_40px_-15px_rgba(124,58,237,0.25)] hover:-translate-y-1 hover:border-violet-200
+        ${active ? "shadow-[0_20px_40px_-15px_rgba(124,58,237,0.25)] -translate-y-1 border-violet-200" : "border-[#0a0a12]/10"}
+      `}
+      onViewportEnter={() => setActive(true)}
+      onViewportLeave={() => setActive(false)}
+      viewport={{ amount: 0.6 }}
+    >
+      {/* CAPABILITIES badge */}
+      <span
+        className={`absolute -top-3 left-6 z-20 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase text-white shadow-sm transition-colors duration-300
+          ${active ? "bg-violet-600" : "bg-[#0a0a12]"} group-hover:bg-violet-600
+        `}
+      >
+        Capabilities
+      </span>
+
+      {/* tint overlay — mirrors hover overlay, driven by scroll on mobile */}
+      <div
+        className={`absolute inset-0 z-0 rounded-2xl bg-gradient-to-br from-violet-50/80 to-fuchsia-50/60 transition-opacity duration-300
+          ${active ? "opacity-100" : "opacity-0"} group-hover:opacity-100
+        `}
+      />
+
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-4">
+          <span
+            className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors duration-300 bg-gradient-to-br
+              ${active ? "from-violet-600 to-fuchsia-500" : "from-[#0a0a12] to-[#241b3d]"} group-hover:from-violet-600 group-hover:to-fuchsia-500
+            `}
+          >
+            <Icon size={18} className="text-white" />
+          </span>
+          <span
+            className={`text-[11px] font-semibold transition-colors ${active ? "text-violet-400" : "text-[#0a0a12]/20"} group-hover:text-violet-400`}
+          >
+            0{i + 1}
+          </span>
+        </div>
+        <h3 className="text-[15px] font-semibold text-[#0a0a12] mb-1.5">{c.title}</h3>
+        <p className="text-[13px] text-[#0a0a12]/55 leading-relaxed mb-4">{c.desc}</p>
+        <Link
+          to="/services"
+          className="text-[13px] font-medium text-violet-600 inline-flex items-center gap-1 hover:gap-1.5 transition-all"
+        >
+          Read more <ArrowUpRight size={13} />
+        </Link>
+      </div>
+    </motion.div>
+  )
+}
+
 function Capabilities() {
   return (
     <section className="relative bg-[#fafafa] py-24 px-6 overflow-hidden">
-      {/* soft glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-200/25 blur-[110px] rounded-full" />
 
-      {/* decorative network graphic, top-right */}
       <svg
         className="absolute top-8 right-0 w-[440px] h-[300px] opacity-60 pointer-events-none hidden lg:block"
         viewBox="0 0 420 280"
@@ -291,34 +350,7 @@ function Capabilities() {
             const Icon = iconMap[c.icon]
             return (
               <Reveal key={c.title} delay={i * 0.05}>
-                <div className="group relative h-full rounded-2xl border border-[#0a0a12]/10 bg-white p-6 pt-8 overflow-visible transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(124,58,237,0.25)] hover:-translate-y-1 hover:border-violet-200">
-                  {/* CAPABILITIES badge — sits above the hover overlay */}
-                  <span className="absolute -top-3 left-6 z-20 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-[#0a0a12] text-white shadow-sm group-hover:bg-violet-600 transition-colors duration-300">
-                    Capabilities
-                  </span>
-
-                  {/* hover overlay — kept below badge and content */}
-                  <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-violet-50/80 to-fuchsia-50/60 transition-opacity duration-300" />
-
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0a0a12] to-[#241b3d] flex items-center justify-center group-hover:from-violet-600 group-hover:to-fuchsia-500 transition-colors duration-300">
-                        <Icon size={18} className="text-white" />
-                      </span>
-                      <span className="text-[11px] font-semibold text-[#0a0a12]/20 group-hover:text-violet-400 transition-colors">
-                        0{i + 1}
-                      </span>
-                    </div>
-                    <h3 className="text-[15px] font-semibold text-[#0a0a12] mb-1.5">{c.title}</h3>
-                    <p className="text-[13px] text-[#0a0a12]/55 leading-relaxed mb-4">{c.desc}</p>
-                    <Link
-                      to="/services"
-                      className="text-[13px] font-medium text-violet-600 inline-flex items-center gap-1 hover:gap-1.5 transition-all"
-                    >
-                      Read more <ArrowUpRight size={13} />
-                    </Link>
-                  </div>
-                </div>
+                <CapabilityCard c={c} i={i} Icon={Icon} />
               </Reveal>
             )
           })}

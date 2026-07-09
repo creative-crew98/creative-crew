@@ -60,15 +60,18 @@ export const trustedBrands = [
 ]
 
 export const capabilities = [
-  { icon: 'Rocket', title: 'NCF Funnel Development', desc: 'High-converting sales funnels engineered end-to-end.' },
-  { icon: 'Share2', title: 'Social Media Marketing', desc: 'Content, ads, and community that compound.' },
-  { icon: 'Globe', title: 'Website Development', desc: 'Editorial-grade websites built for scale.' },
-  { icon: 'Code2', title: 'Software Development', desc: 'Custom apps, dashboards, automation.' },
-  { icon: 'GraduationCap', title: 'LMS Development', desc: 'Beautiful learning platforms that convert.' },
-  { icon: 'ShoppingBag', title: 'POS Software', desc: 'Retail-ready systems built to last.' },
+  // Arranged to match the natural buyer journey on the Home page:
+  // Brand & attention → Funnel & conversion → Web & content → Platforms → Automation/software.
   { icon: 'Palette', title: 'Branding & Graphic Design', desc: 'Visual identities that feel iconic.' },
   { icon: 'Clapperboard', title: 'Video Editing', desc: 'Cinematic edits that stop the scroll.' },
+  { icon: 'Share2', title: 'Social Media Marketing', desc: 'Content, ads, and community that compound.' },
+  { icon: 'Rocket', title: 'NCF Funnel Development', desc: 'High-converting sales funnels engineered end-to-end.' },
+  { icon: 'Globe', title: 'Website Development', desc: 'Editorial-grade websites built for scale.' },
+  { icon: 'GraduationCap', title: 'LMS Development', desc: 'Beautiful learning platforms that convert.' },
+  { icon: 'ShoppingBag', title: 'POS Software', desc: 'Retail-ready systems built to last.' },
+  { icon: 'Code2', title: 'Software Development', desc: 'Custom apps, dashboards, automation.' },
 ]
+
 
 export const stats = [
   { value: '250+', label: 'Projects delivered' },
