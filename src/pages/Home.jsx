@@ -435,7 +435,7 @@ function Process() {
           </div>
 
           {/* Animation panel — now on the right on desktop, shows above timeline on mobile */}
-          <div className="order-1 lg:order-2 lg:sticky lg:top-28">
+          <div className="order-1 lg:order-2 lg:sticky lg:top-30 lg:self-start">
             <Reveal>
               <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-5 sm:p-8">
                 <div className="w-full h-[220px] sm:h-[320px] lg:h-[380px]">

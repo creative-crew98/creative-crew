@@ -18,7 +18,7 @@ export default function SectionHeading({
   return (
     <div className={`flex flex-col ${alignment}`}>
       {eyebrow && (
-        <div className={`flex items-center gap-2.5 mb-4 ${isCenter ? 'justify-center' : ''}`}>
+        <div className={`flex items-center gap-2.5 mb-6! ${isCenter ? 'justify-center' : ''}`}>
           <span className="w-6 h-px bg-gradient-to-r from-violet-500 to-fuchsia-400" />
           <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-violet-400">
             {eyebrow}
@@ -27,7 +27,7 @@ export default function SectionHeading({
       )}
 
       <h2
-        className={`text-4xl sm:text-5xl font-bold tracking-[-0.02em] leading-[1.08] ${titleColor} flex flex-wrap gap-x-2 gap-y-1 sm:gap-y-2 ${isCenter ? 'justify-center' : ''
+        className={`text-4xl sm:text-5xl font-bold tracking-[-0.02em] !leading-[1.2] ${titleColor} flex flex-wrap gap-x-2 gap-y-1 sm:gap-y-2 ${isCenter ? 'justify-center' : ''
           }`}
       >
         <BlurText
