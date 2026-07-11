@@ -426,7 +426,7 @@ export const StaggeredMenu = ({
                 <aside
                     id="staggered-menu-panel"
                     ref={panelRef}
-                    className={`staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px] ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
+                    className={`staggered-menu-panel absolute top-0 right-0 h-full flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
                     style={{ WebkitBackdropFilter: 'blur(12px)' }}
                     aria-hidden={!open}
                 >
@@ -519,10 +519,15 @@ export const StaggeredMenu = ({
   position: absolute; top: 0; right: 0;
   width: clamp(280px, 86vw, 420px); height: 100%;
   background:
-    radial-gradient(120% 60% at 100% 0%, rgba(124, 58, 237, 0.28), transparent 60%),
-    #0a0a12;
-  border-left: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    radial-gradient(120% 60% at 100% 0%, rgba(124, 58, 237, 0.35), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+    rgba(10, 10, 18, 0.55);
+  border-left: 1px solid rgba(255,255,255,0.14);
+  box-shadow:
+    inset 1px 0 0 rgba(255,255,255,0.06),
+    -20px 0 60px -20px rgba(0,0,0,0.5);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   display: flex; flex-direction: column; padding: 6em 2em 2em 2em;
   overflow-y: auto; z-index: 10;
 }
@@ -538,6 +543,7 @@ export const StaggeredMenu = ({
   position: relative; color: #f5f4fb; font-weight: 600; font-size: 3rem; cursor: pointer;
   line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase;
   transition: color 0.25s ease; display: inline-block; text-decoration: none; padding: 0.15em 1.6em 0.15em 0;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.25);
 }
 .sm-scope .sm-panel-itemLabel { display: inline-block; will-change: transform; transform-origin: 50% 100%; }
 .sm-scope .sm-panel-item:hover,
