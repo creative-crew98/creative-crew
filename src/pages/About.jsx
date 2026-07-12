@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
 import Testimonials from '../components/TestimonialsSection'
 import { timeline, teamMembers } from '../data/siteData'
-import { Rocket, Globe, Award } from 'lucide-react'
+import { Rocket, Globe, Award, ChevronDown } from 'lucide-react'
 
 export default function About() {
   return (
@@ -104,6 +105,11 @@ function Timeline() {
 }
 
 function Team() {
+  const [showAll, setShowAll] = useState(false)
+  const INITIAL_COUNT = 4
+  const visibleMembers = showAll ? teamMembers : teamMembers.slice(0, INITIAL_COUNT)
+  const hasMore = teamMembers.length > INITIAL_COUNT
+
   return (
     <section className="bg-white py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -111,7 +117,7 @@ function Team() {
           <SectionHeading eyebrow="Team" title="Meet the" accent="people" align="left" />
         </Reveal>
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {teamMembers.map((m, i) => (
+          {visibleMembers.map((m, i) => (
             <Reveal key={m.name} delay={i * 0.07}>
               <div>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#0a0a12]/5">
@@ -128,6 +134,21 @@ function Team() {
             </Reveal>
           ))}
         </div>
+
+        {hasMore && (
+          <div className="mt-10 flex justify-center">
+            <button
+              onClick={() => setShowAll((prev) => !prev)}
+              className="group inline-flex items-center gap-2 rounded-full border border-[#0a0a12]/15 px-6 py-3 text-[14px] font-semibold text-[#0a0a12] transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/5"
+            >
+              {showAll ? 'Show less' : 'Show all'}
+              <ChevronDown
+                size={16}
+                className={`transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
+              />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )

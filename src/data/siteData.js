@@ -163,10 +163,16 @@ export const portfolioItems = [
 export const filterCategories = ['All', 'Marketing', 'Social Media','Software', 'Web' ]
 
 export const teamMembers = [
-  { name: 'Aarav Mehta', role: 'Founder & Creative Director', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },
-  { name: 'Elena Rossi', role: 'Head of Strategy', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
-  { name: 'Kenji Watanabe', role: 'Lead Engineer', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80' },
-  { name: 'Zara Ali', role: 'Design Lead', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80' },
+  { name: 'Sohil Alvi', role: 'Founder & Director', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },
+  { name: 'Akash Nagar', role: 'Creative Director', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
+  { name: 'Arjun Prasad', role: 'Technical Head', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80' },
+  { name: 'Pawan Singh', role: 'Head of Management', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80' },
+  { name: 'Chandru', role: 'Social Media Head', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },
+  { name: 'Abhishek', role: 'Video Editing Head', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
+  { name: 'Salman', role: 'Client Management', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80' },
+  { name: 'Arman Singh Rawat', role: 'Developer & Designer', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80' },
+  { name: 'Samresh Mali', role: 'Video Editor', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },
+  { name: 'Neeraj Sharma', role: 'Developer', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
 ]
 
 export const timeline = [
