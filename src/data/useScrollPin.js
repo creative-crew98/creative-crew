@@ -39,8 +39,13 @@ export function useScrollPin({
   triggerRef,
   pinRef,
   stepCount,
-  pxPerStepDesktop = 600,
-  pxPerStepMobile = 380,
+  // Multiplier of viewport height PER STEP, not a fixed px guess. This is
+  // what actually fixes "start/end feels wrong on mobile" — a fixed px
+  // value (e.g. 380) is a huge distance on a short phone screen and a tiny
+  // one on a tall monitor, so the pace felt inconsistent across devices.
+  // Scaling by innerHeight makes the pace consistent everywhere.
+  viewportMultiplierDesktop = 0.9,
+  viewportMultiplierMobile = 0.7,
   scrub = 1,
   enabled = true,
 }) {
@@ -61,17 +66,35 @@ export function useScrollPin({
         },
         (context) => {
           const { isDesktop } = context.conditions
-          const pxPerStep = isDesktop ? pxPerStepDesktop : pxPerStepMobile
+          const viewportMultiplier = isDesktop ? viewportMultiplierDesktop : viewportMultiplierMobile
 
           const trigger = ScrollTrigger.create({
             trigger: triggerRef.current,
+            // 'top top' = pin engages the instant the section's top edge
+            // reaches the viewport's top edge — this is the correct, clean
+            // "start" for both mobile and desktop; the perceived "abrupt
+            // start" people usually hit is actually the *distance* being
+            // wrong (fixed above), not this line.
             start: 'top top',
-            end: () => `+=${stepCount * pxPerStep}`,
+            end: () => `+=${stepCount * window.innerHeight * viewportMultiplier}`,
             pin: pinRef?.current ?? triggerRef.current,
             pinSpacing: true,
             scrub,
             anticipatePin: 1,
             invalidateOnRefresh: true,
+            // Prevents a pile-up of intermediate scroll events on fast
+            // mobile flicks near the end of the pin — this is what caused
+            // the "ending" to feel jerky/late on touch devices.
+            fastScrollEnd: true,
+            // Settles the timeline at the nearest step instead of leaving
+            // it stopped mid-transition wherever the user's scroll/finger
+            // happened to stop — gives both the start and every step a
+            // deliberate, "snapped" finish rather than a loose float.
+            snap: {
+              snapTo: stepCount > 1 ? 1 / (stepCount - 1) : 1,
+              duration: 0.3,
+              ease: 'power1.inOut',
+            },
             onUpdate: (self) => {
               const idx = Math.min(stepCount - 1, Math.floor(self.progress * stepCount))
               setProgress(self.progress)
@@ -85,8 +108,20 @@ export function useScrollPin({
       )
     }, triggerRef)
 
-    return () => ctx.revert()
-  }, [enabled, stepCount, pxPerStepDesktop, pxPerStepMobile, scrub, triggerRef, pinRef])
+    // Mobile browser chrome (address bar) hiding/showing on scroll changes
+    // innerHeight mid-session without a resize event firing reliably —
+    // orientationchange + visualViewport resize catch that and force GSAP
+    // to recompute the pin distance, so the "end" doesn't drift stale.
+    const refresh = () => ScrollTrigger.refresh()
+    window.addEventListener('orientationchange', refresh)
+    window.visualViewport?.addEventListener('resize', refresh)
+
+    return () => {
+      ctx.revert()
+      window.removeEventListener('orientationchange', refresh)
+      window.visualViewport?.removeEventListener('resize', refresh)
+    }
+  }, [enabled, stepCount, viewportMultiplierDesktop, viewportMultiplierMobile, scrub, triggerRef, pinRef])
 
   return { progress, activeStep, setActiveStep }
 }

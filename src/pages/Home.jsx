@@ -19,6 +19,7 @@ import yourPhoto from '../assets/Photo.jpeg'
 import ProfileCard from '../animations/ProfileCard'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useScrollPin } from '../data/useScrollPin'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -372,64 +373,28 @@ function Difference() {
 
 'use client'
 function Process() {
-  const [activeStep, setActiveStep] = useState(0)
-  const [progress, setProgress] = useState(0) // 0 → 1 across the whole section, drives the timeline fill
+  const sectionRef = useRef(null) // trigger — defines when pinning starts/ends
+  const pinRef = useRef(null) // element that actually gets pinned
   const [lottieFailed, setLottieFailed] = useState(false)
-  const sectionRef = useRef(null) // the ScrollTrigger trigger — defines when pinning starts/ends
-  const pinRef = useRef(null) // the element that actually gets pinned
   const stepCount = processSteps.length
+
+  const { progress, activeStep } = useScrollPin({
+    triggerRef: sectionRef,
+    pinRef,
+    stepCount,
+  })
 
   useEffect(() => {
     setLottieFailed(false)
   }, [activeStep])
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia()
-
-      // Pin distance differs by breakpoint so the pace feels right on both —
-      // more scroll distance on desktop for a slower, deliberate reveal;
-      // tighter on mobile so it doesn't feel like it's stuck forever.
-      mm.add(
-        {
-          isDesktop: '(min-width: 1024px)',
-          isMobile: '(max-width: 1023px)',
-        },
-        (context) => {
-          const { isDesktop } = context.conditions
-          const pxPerStep = isDesktop ? 600 : 380
-
-          const trigger = ScrollTrigger.create({
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: () => `+=${stepCount * pxPerStep}`,
-            pin: pinRef.current,
-            pinSpacing: true,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => {
-              const idx = Math.min(stepCount - 1, Math.floor(self.progress * stepCount))
-              setProgress(self.progress)
-              setActiveStep((prev) => (prev === idx ? prev : idx))
-            },
-          })
-
-          return () => trigger.kill()
-        }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [stepCount])
 
   const active = processSteps[activeStep]
   const fillPercent = progress * 100
 
   return (
     <section ref={sectionRef} className="relative bg-white">
-      {/* No more manual height={stepCount * 100vh} wrapper — GSAP's pinSpacing
-          creates the equivalent scroll space automatically based on `end`. */}
+      {/* No manual height={stepCount * 100vh} wrapper needed — useScrollPin's
+          pinSpacing creates the equivalent scroll space automatically. */}
       <div ref={pinRef} className="relative min-h-screen flex items-center py-16 sm:py-24 overflow-hidden">
         <div className="absolute top-1/3 right-0 w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] bg-violet-200/25 blur-[90px] sm:blur-[110px] rounded-full pointer-events-none" />
 
@@ -441,7 +406,13 @@ function Process() {
           {/* Horizontal timeline: track fills continuously with scroll progress,
               nodes activate as the timeline reaches them */}
           <div className="relative mt-10 sm:mt-14 mb-10 sm:mb-14">
-            <div className="absolute left-0 right-0 top-[7px] h-[2px] bg-[#0a0a12]/10 rounded-full">
+            {/* left-2/right-2 (8px = half of the dots' w-4/16px) insets the
+                line so its 0%–100% range matches the dots' CENTERS, not the
+                row's raw edges — otherwise justify-between leaves each dot's
+                center offset inward from the line by half its own width,
+                making the fill poke out past the first dot before any
+                scroll and overshoot past the last dot at 100%. */}
+            <div className="absolute left-2 right-2 top-[7px] h-[2px] bg-[#0a0a12]/10 rounded-full">
               <div
                 className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full"
                 style={{ width: `${fillPercent}%` }}
