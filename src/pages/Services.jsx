@@ -50,7 +50,7 @@ function ServiceList() {
         return (
           <div
             key={s.n}
-            className={` pt-12 sm:pt-24 py-20 px-6 ${dark ? 'bg-[#0a0a12]' : 'bg-white'}`}
+            className={` pt-10 sm:pt-24 py-20 px-6 ${dark ? 'bg-[#0a0a12]' : 'bg-white'}`}
           >
             <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
               <Reveal className={i % 2 === 1 ? 'lg:order-2' : ''}>
@@ -90,7 +90,7 @@ function ServiceList() {
                 <div className="flex items-center gap-6">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-[13px] font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-[13px] font-semibold px-5 py-2.5 hover:opacity- transition-opacity"
                   >
                     Start project <ArrowUpRight size={13} />
                   </Link>
@@ -99,15 +99,17 @@ function ServiceList() {
 
               <Reveal delay={0.1} className={i % 2 === 1 ? 'lg:order-1' : ''}>
                 <div
-                  className={`aspect-square rounded-3xl border flex flex-col justify-between p-8 ${dark ? 'border-white/10 bg-white/[0.03]' : 'border-[#0a0a12]/10 bg-gradient-to-br from-violet-50 to-fuchsia-50'
-                    }`}
+                  className="aspect-square rounded-3xl border border-white/10 flex flex-col justify-between p-8 relative overflow-hidden bg-cover bg-center"
+                  style={{ backgroundImage: `url(${s.image})` }}
                 >
-                  <span className={`w-11 h-11 rounded-xl flex items-center justify-center ${dark ? 'bg-white/10' : 'bg-[#0a0a12]'}`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/10 to-black/10" />
+
+                  <span className="relative z-10 w-11 h-11 rounded-xl flex items-center justify-center bg-white/10 backdrop-blur-sm">
                     <Icon size={18} className="text-white" />
                   </span>
-                  <div>
-                    <p className={`text-6xl font-bold mb-1 ${dark ? 'text-white' : 'text-[#0a0a12]'}`}>{s.n}</p>
-                    <p className={`text-[11px] uppercase tracking-wide ${dark ? 'text-white/40' : 'text-[#0a0a12]/40'}`}>
+                  <div className="relative z-10">
+                    <p className="text-6xl font-bold mb-1 text-white">{s.n}</p>
+                    <p className="text-[11px] uppercase tracking-wide text-white/70">
                       {s.title}
                     </p>
                   </div>
@@ -124,7 +126,7 @@ function ServiceList() {
 function Faq() {
   const [openIndex, setOpenIndex] = useState(0)
   return (
-    <section className="bg-white pt-12 sm:pt-24 py-24 px-6">
+    <section className="bg-white pt-1 sm:pt-24 py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <Reveal>
           <SectionHeading eyebrow="FAQ" title="Questions," accent="answered" />
@@ -146,7 +148,7 @@ function Faq() {
                   />
                 </button>
                 <div
-                  className={`grid transition-all duration-300 ease-out ${openIndex === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                  className={`grid transition-all duration-300 ease-out ${openIndex === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-100'
                     }`}
                 >
                   <div className="overflow-hidden">

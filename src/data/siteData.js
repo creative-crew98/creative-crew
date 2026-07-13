@@ -4,7 +4,23 @@
 // ────────────────────────────────────────────────────────────
 // SITE CONTENT — edit everything here, no need to touch components
 // ────────────────────────────────────────────────────────────
+
+import img1 from '../assets/1.png'
+import img2 from '../assets/2.png'
+import img3 from '../assets/3.png'
+import img4 from '../assets/4.png'
+import img5 from '../assets/5.png'
+import img6 from '../assets/6.png'
+import img7 from '../assets/7.png'
+import img9 from '../assets/9.png'
+import img9Webp from '../assets/9.webp'
+
 import akashImg from '../assets/akash.jpeg'
+import ccLogo from '../assets/cc.png'
+import Ncf from '../assets/NCF.png'
+import SocialMedia from '../assets/SocialMedia.png'
+import Software from '../assets/Software.png'
+import Website from '../assets/Website.png'
 export const siteConfig = {
   name: 'Creative Crew',
   tagline: 'Let\'s build something unforgettable.',
@@ -59,8 +75,19 @@ export const footerColumns = [
 ]
 
 export const trustedBrands = [
-  'NovaCorp', 'Lumos', 'Arcadia', 'Zenith', 'Orbit', 'Kairos', 'Helix', 'Meridian',
+  { name: 'NovaCorp', logo: img1 },
+  { name: 'Lumos', logo: img2 },
+  { name: 'Arcadia', logo: img3 },
+  { name: 'Zenith', logo: img4 },
+  { name: 'Orbit', logo: img5 },
+  { name: 'Kairos', logo: img6 },
+  { name: 'Helix', logo: img7 },
+  { name: 'Meridian', logo: img9 },
+  // additional logo variants/assets
+  { name: 'Meridian (Alt)', logo: img9Webp },
 ]
+
+
 
 export const capabilities = [
   {
@@ -104,36 +131,41 @@ export const processSteps = [
 
 export const services = [
   {
-    n: '01', icon: 'Rocket', title: 'NCF Funnel Development',
+    n: '01', icon: 'Rocket', title: 'NCF Funnel',
     tagline: 'Funnels that convert while you sleep.',
-    desc: 'Neuro-conversion frameworks engineered around your customer journey.',
-    features: ['Landing pages', 'Lead magnets', 'Email flows', 'Retargeting'],
-    stack: ['Next.js', 'Klaviyo', 'Meta Ads', 'GA4'],
+    desc: 'No chase framework engineered around your customer journey.',
+    features: ['Campaign setup & optimize', 'Lead mangament', 'Scripting & Editing', 'Lms & landing page'],
+    stack: ['Meta ads','Ads creatives', 'Copy writing','Startegy development'],
     price: 'From $6.5k',
+
+    image: Ncf
   },
   {
     n: '02', icon: 'Share2', title: 'Social Media Marketing',
     tagline: 'Content that stops scrolls and starts revenue.',
     desc: 'End-to-end social — from creative to paid to community.',
     features: ['Content calendar', 'Reels & shorts', 'Paid ads', 'Community mgmt'],
-    stack: ['Meta', 'TikTok', 'YouTube', 'LinkedIn'],
+    stack: ['Instagram', 'Facebook', 'YouTube', 'LinkedIn'],
     price: 'From $3.5k/mo',
+    image:SocialMedia
   },
   {
     n: '03', icon: 'Globe', title: 'Website Development',
     tagline: 'Editorial-grade websites that scale.',
     desc: 'Design-led, performance-obsessed, SEO-ready builds.',
     features: ['Design system', 'CMS', 'SEO', 'Analytics'],
-    stack: ['Next.js', 'Sanity', 'Vercel', 'Framer Motion'],
+    stack: ['Next.js', 'React', 'Node.js', 'Framer Motion'],
     price: 'From $8k',
+    image: Website
   },
   {
     n: '04', icon: 'Code2', title: 'Software Development',
     tagline: 'Custom apps built to last.',
     desc: 'Dashboards, portals, automation — production-grade.',
-    features: ['Architecture', 'Auth & RBAC', 'APIs', 'Integrations'],
+    features: ['LMS', 'Point of sale', 'Automation', 'Integrations'],
     stack: ['Node', 'Postgres', 'Next.js', 'AWS'],
     price: 'From $15k',
+    image: Software
   },
 ]
 
@@ -179,10 +211,10 @@ export const teamMembers = [
 ]
 
 export const timeline = [
-  { year: '2020', title: 'Founded', desc: 'Started as two designers in a tiny studio.' },
-  { year: '2021', title: 'First $1M project', desc: 'Delivered a nationwide launch for a retail brand.' },
-  { year: '2023', title: 'Global team', desc: 'Grew into a distributed team across 3 continents.' },
-  { year: '2025', title: 'Creative Crew', desc: 'Rebranded and doubled down on premium craft.' },
+  { year: '2022', title: 'Started My Journey as a Designer', desc: 'Built a strong creative foundation through design, branding, and user experience.' },
+  { year: '2024', title: 'Delivered My First International Project', desc: 'Successfully completed my first global client project, expanding beyond local markets.' },
+  { year: '2025', title: 'Built a Multi-Disciplinary Expert Team', desc: 'Assembled specialists in design, development, marketing, and strategy to deliver end-to-end solutions.' },
+  { year: '2026', title: 'Expanded Into a Professional Studio', desc: 'Moved into a dedicated studio and began building a high-performance team with an in-house training system.' },
 ]
 
 export const values = [

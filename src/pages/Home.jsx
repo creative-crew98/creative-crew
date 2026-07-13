@@ -188,10 +188,19 @@ function TrustedBy() {
         className="relative max-w-5xl mx-auto overflow-hidden"
         style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
       >
-        <div className="flex w-max gap-16 animate-marquee">
+        <div className="flex w-max gap-16 items-center animate-marquee">
           {loop.map((b, i) => (
-            <span key={i} className="text-white/35 hover:text-white/70 font-semibold text-lg tracking-wide whitespace-nowrap transition-colors">
-              {b}
+            <span
+              key={`${b.name}-${i}`}
+              className="flex items-center justify-center whitespace-nowrap transition-opacity"
+            >
+              <img
+                src={b.logo}
+                alt={b.name}
+                loading="lazy"
+                draggable={false}
+                className="h-20 sm:h-15 w-auto opacity-100 transition-opacity object-contain"
+              />
             </span>
           ))}
         </div>
