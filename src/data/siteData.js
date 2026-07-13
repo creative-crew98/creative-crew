@@ -1,11 +1,14 @@
 // ────────────────────────────────────────────────────────────
 // SITE CONTENT — edit everything here, no need to touch components
 // ────────────────────────────────────────────────────────────
-
+// ────────────────────────────────────────────────────────────
+// SITE CONTENT — edit everything here, no need to touch components
+// ────────────────────────────────────────────────────────────
+import akashImg from '../assets/akash.jpeg'
 export const siteConfig = {
   name: 'Creative Crew',
   tagline: 'Let\'s build something unforgettable.',
-  email: 'hello@creativecrew.studio',
+  email: '@creativecrew',
   phone: '+91 123 456 7890',
   location: 'Remote-first · San Francisco · Berlin',
   hours: 'Mon–Sat · 8am–7pm PT',
@@ -164,7 +167,7 @@ export const filterCategories = ['All', 'Marketing', 'Social Media','Software', 
 
 export const teamMembers = [
   { name: 'Sohil Alvi', role: 'Founder & Director', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },
-  { name: 'Akash Nagar', role: 'Creative Director', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
+  { name: 'Akash Nagar', role: 'Creative Director', img: akashImg },
   { name: 'Arjun Prasad', role: 'Technical Head', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80' },
   { name: 'Pawan Singh', role: 'Head of Management', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80' },
   { name: 'Chandru', role: 'Social Media Head', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },

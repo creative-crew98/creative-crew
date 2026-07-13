@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { Sparkles, Instagram, Twitter, Linkedin, Youtube, ArrowUpRight } from 'lucide-react'
+import { Instagram, Twitter, Linkedin, Youtube, ArrowUpRight } from 'lucide-react'
 import { siteConfig, footerColumns, socialLinks } from '../data/siteData'
+import cc from '../assets/cc.png'
 
 // Maps the `label` in siteData's socialLinks to an actual icon component,
 // so adding/removing a platform in siteData.js is all you need to do.
@@ -19,9 +20,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12">
           <div>
             <Link to="/" className="flex items-center gap-2 mb-6">
-              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-                <Sparkles size={15} className="text-white" strokeWidth={2.5} />
-              </span>
+              <img
+                src={cc}
+                alt={`${siteConfig.name || 'Creative Crew'} logo`}
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-white font-semibold tracking-tight text-[16px]">
                 {siteConfig.name}.
               </span>
