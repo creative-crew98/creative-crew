@@ -509,7 +509,7 @@ export const StaggeredMenu = ({
     left: 14px;
     right: 14px;
     width: auto;
-    padding: 0.7em 1.1em;
+    padding: 0.6em 1.1em;
     border-radius: 20px;
     background: rgba(10, 10, 18, 0.65);
     backdrop-filter: blur(20px) saturate(160%);

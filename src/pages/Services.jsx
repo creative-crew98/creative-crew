@@ -50,12 +50,12 @@ function ServiceList() {
         return (
           <div
             key={s.n}
-            className={`py-20 px-6 ${dark ? 'bg-[#0a0a12]' : 'bg-white'}`}
+            className={` pt-12 sm:pt-24 py-20 px-6 ${dark ? 'bg-[#0a0a12]' : 'bg-white'}`}
           >
             <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
               <Reveal className={i % 2 === 1 ? 'lg:order-2' : ''}>
                 <p className={`text-xs font-semibold mb-3 flex items-center gap-2 ${dark ? 'text-violet-400' : 'text-violet-500'}`}>
-                  <Icon size={14} /> Service · {s.n}
+                  <span className="w-1.5 h-1.5 rounded-full bg-current shrink-0" /> Service · {s.n}
                 </p>
                 <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight mb-3 ${dark ? 'text-white' : 'text-[#0a0a12]'}`}>
                   {s.title}
@@ -88,9 +88,6 @@ function ServiceList() {
                 </div>
 
                 <div className="flex items-center gap-6">
-                  <p className={`text-sm ${dark ? 'text-white/70' : 'text-[#0a0a12]/70'}`}>
-                    Investment <span className="font-semibold">{s.price}</span>
-                  </p>
                   <Link
                     to="/contact"
                     className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-[13px] font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity"
@@ -127,7 +124,7 @@ function ServiceList() {
 function Faq() {
   const [openIndex, setOpenIndex] = useState(0)
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-white pt-12 sm:pt-24 py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <Reveal>
           <SectionHeading eyebrow="FAQ" title="Questions," accent="answered" />

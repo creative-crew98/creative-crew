@@ -3,7 +3,6 @@ import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
-import Testimonials from '../components/TestimonialsSection'
 import { timeline, teamMembers } from '../data/siteData'
 import { Rocket, Globe, Award, ChevronDown } from 'lucide-react'
 
@@ -14,7 +13,6 @@ export default function About() {
       <MissionVisionBelief />
       <Timeline />
       <Team />
-      <Testimonials />
       <CtaBanner />
     </PageTransition>
   )
@@ -81,7 +79,7 @@ function MissionVisionBelief() {
 
 function Timeline() {
   return (
-    <section className="bg-[#0a0a12] py-24 px-6">
+    <section className="bg-[#0a0a12] pt-12 sm:pt-24 py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <SectionHeading eyebrow="Timeline" title="The" accent="journey" align="left" dark />
@@ -111,7 +109,7 @@ function Team() {
   const hasMore = teamMembers.length > INITIAL_COUNT
 
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-white pt-12 sm:pt-24 py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <SectionHeading eyebrow="Team" title="Meet the" accent="people" align="left" />

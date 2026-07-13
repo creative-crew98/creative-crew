@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
-
+import cc from '../assets/cc.png';
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
 
 const ANIMATION_CONFIG = {
@@ -41,10 +41,11 @@ const ProfileCardComponent = ({
     enableMobileTilt = false,
     mobileTiltSensitivity = 5,
     miniAvatarUrl,
+    logoUrl = cc,
     name = 'Javi A. Torres',
     title = 'Software Engineer',
-    handle = 'javicodes',
-    status = 'Online',
+    handle = '',
+    status = '',
     contactText = 'Contact',
     showUserInfo = true,
     onContactClick
@@ -445,7 +446,6 @@ const ProfileCardComponent = ({
                         transform: 'translateZ(0) rotateX(0deg) rotateY(0deg)',
                         background: 'rgba(0, 0, 0, 0.9)'
                     }}
-
                     onMouseEnter={e => {
                         e.currentTarget.style.transition = 'none';
                         e.currentTarget.style.transform = 'translateZ(0) rotateX(var(--rotate-y)) rotateY(var(--rotate-x))';
@@ -515,24 +515,20 @@ const ProfileCardComponent = ({
                                 >
                                     <div className="flex items-center gap-3">
                                         <div
-                                            className="rounded-full overflow-hidden border border-white/10 flex-shrink-0"
+                                            className="rounded-full overflow-hidden border border-white/10 flex-shrink-0 flex items-center justify-center bg-white/5"
                                             style={{ width: '48px', height: '48px' }}
                                         >
-                                            <img
-                                                className="w-full h-full object-cover rounded-full"
-                                                src={miniAvatarUrl || avatarUrl}
-                                                alt={`${name || 'User'} mini avatar`}
-                                                loading="lazy"
-                                                style={{ display: 'block', gridArea: 'auto', borderRadius: '50%', pointerEvents: 'auto' }}
-                                                onError={e => {
-                                                    const t = e.target;
-                                                    t.style.opacity = '0.5';
-                                                    t.src = avatarUrl;
-                                                }}
-                                            />
+                                            {logoUrl && (
+                                                <img
+                                                    src={logoUrl}
+                                                    alt="Logo"
+                                                    className="w-full h-full object-contain p-1.5"
+                                                    style={{ display: 'block', pointerEvents: 'auto' }}
+                                                />
+                                            )}
                                         </div>
                                         <div className="flex flex-col items-start gap-1.5">
-                                            <div className="text-sm font-medium text-white/90 leading-none">@{handle}</div>
+                                            <div className="text-sm font-medium text-white/90 leading-none">{handle}</div>
                                             <div className="text-sm text-white/70 leading-none">{status}</div>
                                         </div>
                                     </div>
@@ -561,7 +557,7 @@ const ProfileCardComponent = ({
                                 pointerEvents: 'none'
                             }}
                         >
-                            <div className="w-full absolute flex flex-col" style={{ top: '3em', display: 'flex', gridArea: 'auto' }}>
+                            <div className="w-full absolute flex flex-col" style={{ top: '1.05em', display: 'flex', gridArea: 'auto' }}>
                                 <h3
                                     className="font-semibold m-0"
                                     style={{
@@ -584,6 +580,7 @@ const ProfileCardComponent = ({
                                     style={{
                                         position: 'relative',
                                         top: '-12px',
+                                        marginBottom: '1.5em',
                                         fontSize: '16px',
                                         margin: '0 auto',
                                         backgroundImage: 'linear-gradient(to bottom, #fff, #4a4ac0)',
@@ -604,7 +601,7 @@ const ProfileCardComponent = ({
                     </div>
                 </section>
             </div>
-        </div >
+        </div>
     );
 };
 

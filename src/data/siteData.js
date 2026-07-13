@@ -62,7 +62,7 @@ export const trustedBrands = [
 export const capabilities = [
   {
     icon: 'Rocket',
-    title: 'Funnel Marketing',
+    title: 'NFC Funnel Marketing',
     desc: 'High-converting sales funnels engineered end-to-end.',
   },
   {

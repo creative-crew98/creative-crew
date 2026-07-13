@@ -61,7 +61,7 @@ function Hero() {
   }, [])
 
   return (
-    <section className="relative pt-24 sm:pt-40 pb-28 px-6 overflow-hidden bg-[#0a0a12]">
+    <section className="relative pt-24 sm:pt-40 pb-12 px-6 overflow-hidden bg-[#0a0a12]">
       {/* Ambient background: radial glow + faint dot grid, masked to fade at edges */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(124,58,237,0.28),transparent_55%)]" />
       <div
@@ -72,7 +72,7 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <Reveal>
-          <p className="inline-flex items-center gap-2 text-[12px] text-white/60 border border-white/10 bg-white/[0.03] rounded-full px-3.5 py-1.5 mb-7">
+          <p className="inline-flex items-center gap-2 text-[12px] text-white/60 border border-white/10 bg-white/[0.03] rounded-full px-3.5 py-1.5 mb-5 mt-5">
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
@@ -82,7 +82,7 @@ function Hero() {
 
           <h1 className="text-5xl sm:text-[64px] font-bold text-white tracking-[-0.03em] leading-[1.03] flex flex-wrap gap-x-3">
             <BlurText
-              text="We build digital"
+              text="We Build Digital"
               delay={120}
               animateBy="words"
               direction="top"
@@ -92,13 +92,13 @@ function Hero() {
               className={`bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-300 bg-clip-text text-transparent transition-opacity duration-500 ${accentVisible ? 'opacity-100' : 'opacity-0'
                 }`}
             >
-              experiences
+              Experiences
             </span>
             <span
               className={`text-white transition-opacity duration-500 ${tailVisible ? 'opacity-100' : 'opacity-0'
                 }`}
             >
-              that grow businesses.
+              That Grow Businesses.
             </span>
           </h1>
 
@@ -117,7 +117,7 @@ function Hero() {
             </Link>
             <Link
               to="/portfolio"
-              className="group inline-flex items-center gap-1.5 text-white/80 text-[14px] font-medium px-2 py-3.5 hover:text-white transition-colors"
+              className="group inline-flex items-center gap-1.5 text-violet-300 text-[14px] font-medium px-4 py-2 rounded-full border border-violet-400/30 hover:text-violet-200 hover:border-violet-400/60 transition-colors"
             >
               Explore portfolio
               <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -154,8 +154,6 @@ function Hero() {
             <ProfileCard
               name="Sohil Alvi"
               title="Founder & Diredtor"
-              handle="creativecrew"
-              status="Available for work"
               contactText="Book a call"
               avatarUrl={yourPhoto}
               showUserInfo={true}
@@ -180,7 +178,7 @@ function TrustedBy() {
   // Duplicate the list so the marquee can loop seamlessly at -50%.
   const loop = [...trustedBrands, ...trustedBrands]
   return (
-    <section className="bg-[#0a0a12] pb-24 px-6 overflow-hidden">
+    <section className="bg-[#0a0a12] pb-10 sm:pb-24 px-6 overflow-hidden">
       <Reveal>
         <p className="text-center text-[15px] tracking-[0.2em] uppercase text-white/30 mb-8">
           Trusted by ambitious brands
@@ -206,7 +204,7 @@ function CapabilityCard({ c, i, Icon }) {
 
   return (
     <motion.div
-      className={`group relative h-full rounded-2xl border bg-white p-6 pt-8 overflow-visible transition-all duration-300
+      className={`group relative h-full rounded-2xl border bg-white p-6 pt-7 overflow-visible transition-all duration-300
         hover:shadow-[0_20px_40px_-15px_rgba(124,58,237,0.25)] hover:-translate-y-1 hover:border-violet-200
         ${active ? "shadow-[0_20px_40px_-15px_rgba(124,58,237,0.25)] -translate-y-1 border-violet-200" : "border-[#0a0a12]/10"}
       `}
@@ -230,26 +228,15 @@ function CapabilityCard({ c, i, Icon }) {
         `}
       />
 
-      <div className="relative z-10">
+      <div className="relative z-10 h-full flex flex-col">
         <div className="flex items-center justify-between mb-4">
-          <span
-            className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors duration-300 bg-gradient-to-br
-              ${active ? "from-violet-600 to-fuchsia-500" : "from-[#0a0a12] to-[#241b3d]"} group-hover:from-violet-600 group-hover:to-fuchsia-500
-            `}
-          >
-            <Icon size={18} className="text-white" />
-          </span>
-          <span
-            className={`text-[11px] font-semibold transition-colors ${active ? "text-violet-400" : "text-[#0a0a12]/20"} group-hover:text-violet-400`}
-          >
-            0{i + 1}
-          </span>
+          ...
         </div>
         <h3 className="text-[15px] font-semibold text-[#0a0a12] mb-1.5">{c.title}</h3>
         <p className="text-[13px] text-[#0a0a12]/55 leading-relaxed mb-4">{c.desc}</p>
         <Link
           to="/services"
-          className="text-[13px] font-medium text-violet-600 inline-flex items-center gap-1 hover:gap-1.5 transition-all"
+          className="text-[13px] font-medium text-violet-600 inline-flex items-center gap-1 hover:gap-1.5 transition-all mt-auto"
         >
           Read more <ArrowUpRight size={13} />
         </Link>
@@ -260,7 +247,7 @@ function CapabilityCard({ c, i, Icon }) {
 
 function Capabilities() {
   return (
-    <section className="relative bg-[#fafafa] py-24 px-6 overflow-hidden">
+    <section className="relative bg-[#fafafa] pt-12 sm:pt-24 pb-6 sm:pb-10 px-6 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-200/25 blur-[110px] rounded-full" />
 
       <svg
@@ -299,12 +286,12 @@ function Capabilities() {
       </svg>
 
       <div className="max-w-7xl mx-auto relative">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 items-end mb-16">
+        <div className="mb-10">
           <Reveal>
             <SectionHeading eyebrow="Capabilities" title="Everything you need," accent="under one roof" align="left" />
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-[#0a0a12]/60 text-[15px] leading-relaxed">
+            <p className="text-[#0a0a12]/60 text-[15px] leading-relaxed mt-5 max-w-2xl">
               From first pixel to last conversion — a senior team, obsessive craft, and outcomes
               that outperform your last agency.
             </p>
@@ -327,7 +314,7 @@ function Capabilities() {
 }
 function Difference() {
   return (
-    <section className="relative bg-[#0d0b16] py-24 px-6 overflow-hidden">
+    <section className="relative bg-[#0d0b16] pt-12 sm:pt-24 py-24 px-6 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-violet-600/10 blur-[100px]" />
       <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
         <Reveal>
@@ -556,7 +543,7 @@ function FallbackVisual({ label }) {
 function FeaturedWork() {
   const featured = portfolioItems.slice(0, 4)
   return (
-    <section className="relative z-20 bg-[#0a0a12] py-24 px-6">
+    <section className="relative z-20 bg-[#0a0a12] pt-12 sm:pt-24 py-24 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
           <Reveal>
@@ -605,7 +592,7 @@ function FeaturedWork() {
 function Faq() {
   const [openIndex, setOpenIndex] = useState(0)
   return (
-    <section className="bg-[#0a0a12] py-24 px-6">
+    <section className="bg-[#0a0a12] pt-12 sm:pt-24 py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <Reveal>
           <SectionHeading eyebrow="FAQ" title="Questions," accent="answered" dark />
