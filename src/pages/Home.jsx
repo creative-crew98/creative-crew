@@ -382,7 +382,7 @@ function Process() {
     <section ref={sectionRef} className="relative bg-white">
       {/* No manual height={stepCount * 100vh} wrapper needed — useScrollPin's
           pinSpacing creates the equivalent scroll space automatically. */}
-      <div ref={pinRef} className="relative min-h-screen flex items-center py-16 sm:py-24 overflow-hidden">
+      <div ref={pinRef} className="relative min-h-screen flex items-center py-1 sm:py-24 overflow-hidden">
         <div className="absolute top-1/3 right-0 w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] bg-violet-200/25 blur-[90px] sm:blur-[110px] rounded-full pointer-events-none" />
 
         <div className="w-full max-w-7xl mx-auto px-4">
@@ -392,26 +392,22 @@ function Process() {
 
           {/* Horizontal timeline: track fills continuously with scroll progress,
               nodes activate as the timeline reaches them */}
-          <div className="relative pt-1 sm:pt-24 mt-10 sm:mt-14 mb-10 sm:mb-14">
-            {/* left-2/right-2 (8px = half of the dots' w-4/16px) insets the
-                line so its 0%–100% range matches the dots' CENTERS, not the
-                row's raw edges — otherwise justify-between leaves each dot's
-                center offset inward from the line by half its own width,
-                making the fill poke out past the first dot before any
-                scroll and overshoot past the last dot at 100%. */}
-            <div className="absolute left-2 right-2 top-[7px] h-[2px] bg-[#0a0a12]/10 rounded-full">
-              <div
-                className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full"
-                style={{ width: `${fillPercent}%` }}
-              />
-            </div>
-            <div className="relative flex justify-between">
-              {processSteps.map((s, i) => {
-                const isActive = i === activeStep
-                const isDone = i < activeStep
-                return (
-                  <div key={s.n} className="flex flex-col items-center gap-2">
+          <div className="relative mt-10 sm:mt-14 mb-10 sm:mb-14">
+            {/* Dots row — fixed height so the line can center against it precisely */}
+            <div className="relative h-4">
+              <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-[2px] bg-[#0a0a12]/10 rounded-full">
+                <div
+                  className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full"
+                  style={{ width: `${fillPercent}%` }}
+                />
+              </div>
+              <div className="relative flex justify-between h-full">
+                {processSteps.map((s, i) => {
+                  const isActive = i === activeStep
+                  const isDone = i < activeStep
+                  return (
                     <span
+                      key={s.n}
                       className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 ${isActive
                         ? 'bg-indigo-600 border-indigo-600 scale-125'
                         : isDone
@@ -419,13 +415,24 @@ function Process() {
                           : 'bg-white border-[#0a0a12]/15'
                         }`}
                     />
-                    <span
-                      className={`text-xs font-medium transition-colors duration-300 ${isActive || isDone ? 'text-[#0a0a12]' : 'text-[#0a0a12]/35'
-                        }`}
-                    >
-                      {s.title}
-                    </span>
-                  </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Labels row — separate, so its text height/wrap can never affect line position */}
+            <div className="flex justify-between mt-2">
+              {processSteps.map((s, i) => {
+                const isActive = i === activeStep
+                const isDone = i < activeStep
+                return (
+                  <span
+                    key={s.n}
+                    className={`text-xs font-medium text-center transition-colors duration-300 ${isActive || isDone ? 'text-[#0a0a12]' : 'text-[#0a0a12]/35'
+                      }`}
+                  >
+                    {s.title}
+                  </span>
                 )
               })}
             </div>
