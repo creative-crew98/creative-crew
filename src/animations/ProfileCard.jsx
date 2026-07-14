@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import cc from '../assets/cc.png';
 import { siteConfig } from '../data/siteData';
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
@@ -51,11 +52,20 @@ const ProfileCardComponent = ({
     showUserInfo = true,
     onContactClick
 }) => {
+    const navigate = useNavigate();
     const wrapRef = useRef(null);
     const shellRef = useRef(null);
 
     const enterTimerRef = useRef(null);
     const leaveRafRef = useRef(null);
+
+    const goToBooking = useCallback(() => {
+        if (onContactClick) {
+            onContactClick();
+        } else {
+            navigate('/contact#book-a-call');
+        }
+    }, [onContactClick, navigate]);
 
     const tiltEngine = useMemo(() => {
         if (!enableTilt) return null;
@@ -342,73 +352,6 @@ const ProfileCardComponent = ({
         [iconUrl, grainUrl, innerGradient, behindGlowColor, behindGlowSize, cardRadius]
     );
 
-    // Complex styles that require CSS variables and can't be done with Tailwind
-    const shineStyle = {
-        maskImage: 'var(--icon)',
-        maskMode: 'luminance',
-        maskRepeat: 'repeat',
-        maskSize: '150%',
-        maskPosition: 'top calc(200% - (var(--background-y) * 5)) left calc(100% - var(--background-x))',
-        filter: 'brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5)',
-        animation: 'pc-holo-bg 18s linear infinite',
-        animationPlayState: 'running',
-        mixBlendMode: 'color-dodge',
-        '--space': '5%',
-        '--angle': '-45deg',
-        transform: 'translate3d(0, 0, 1px)',
-        overflow: 'hidden',
-        zIndex: 3,
-        background: 'transparent',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundImage: `
-      repeating-linear-gradient(
-        0deg,
-        var(--sunpillar-clr-1) calc(var(--space) * 1),
-        var(--sunpillar-clr-2) calc(var(--space) * 2),
-        var(--sunpillar-clr-3) calc(var(--space) * 3),
-        var(--sunpillar-clr-4) calc(var(--space) * 4),
-        var(--sunpillar-clr-5) calc(var(--space) * 5),
-        var(--sunpillar-clr-6) calc(var(--space) * 6),
-        var(--sunpillar-clr-1) calc(var(--space) * 7)
-      ),
-      repeating-linear-gradient(
-        var(--angle),
-        #0e152e 0%,
-        hsl(180, 10%, 60%) 3.8%,
-        hsl(180, 29%, 66%) 4.5%,
-        hsl(180, 10%, 60%) 5.2%,
-        #0e152e 10%,
-        #0e152e 12%
-      ),
-      radial-gradient(
-        farthest-corner circle at var(--pointer-x) var(--pointer-y),
-        hsla(0, 0%, 0%, 0.1) 12%,
-        hsla(0, 0%, 0%, 0.15) 20%,
-        hsla(0, 0%, 0%, 0.25) 120%
-      )
-    `.replace(/\s+/g, ' '),
-        gridArea: '1 / -1',
-        borderRadius: cardRadius,
-        pointerEvents: 'none'
-    };
-
-    const glareStyle = {
-        transform: 'translate3d(0, 0, 1.1px)',
-        overflow: 'hidden',
-        backgroundImage: `radial-gradient(
-      farthest-corner circle at var(--pointer-x) var(--pointer-y),
-      hsl(248, 25%, 80%) 12%,
-      hsla(207, 40%, 30%, 0.8) 90%
-    )`,
-        mixBlendMode: 'overlay',
-        filter: 'brightness(0.8) contrast(1.2)',
-        zIndex: 4,
-        gridArea: '1 / -1',
-        borderRadius: cardRadius,
-        pointerEvents: 'none'
-    };
-
     return (
         <div
             ref={wrapRef}
@@ -467,11 +410,7 @@ const ProfileCardComponent = ({
                             gridArea: '1 / -1'
                         }}
                     >
-                        {/* Shine layer */}
-                        <div style={shineStyle} />
 
-                        {/* Glare layer */}
-                        <div style={glareStyle} />
 
                         {/* Avatar content */}
                         <div
@@ -511,7 +450,7 @@ const ProfileCardComponent = ({
                                 >
                                     <div className="flex items-center gap-3">
                                         <div
-                                            className="rounded-full overflow-hidden border border-white/10 flex-shrink-0 flex items-center justify-center bg-white/5"
+                                            className="rounded-full overflow-hidden border border-black/10 flex-shrink-0 flex items-center justify-center bg-black/5"
                                             style={{ width: '48px', height: '48px' }}
                                         >
                                             {logoUrl && (
@@ -528,14 +467,15 @@ const ProfileCardComponent = ({
                                             <div className="text-sm text-white/70 leading-none">{status}</div>
                                         </div>
                                     </div>
-                                    <a
-                                        href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`}
+                                    <button
+                                        type="button"
+                                        onClick={goToBooking}
                                         className="rounded-lg px-4 py-3 text-xs font-semibold text-white cursor-pointer transition-all duration-200 ease-out hover:opacity-90 hover:-translate-y-px bg-violet-600 hover:bg-violet-700 inline-flex items-center justify-center"
                                         style={{ pointerEvents: 'auto', display: 'block', gridArea: 'auto', borderRadius: '8px' }}
-                                        aria-label={`Call ${name || 'user'}`}
+                                        aria-label={`Book a call with ${name || 'us'}`}
                                     >
                                         {contactText}
-                                    </a>
+                                    </button>
                                 </div>
                             )}
                         </div>

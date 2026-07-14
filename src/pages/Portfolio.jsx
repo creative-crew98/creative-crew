@@ -29,8 +29,8 @@ export default function Portfolio() {
               key={cat}
               onClick={() => setActive(cat)}
               className={`text-[13px] font-medium px-4 py-2 rounded-full border transition-colors ${active === cat
-                  ? 'bg-white text-[#0a0a12] border-white'
-                  : 'border-white/15 text-white/60 hover:text-white hover:border-white/30'
+                ? 'bg-white text-[#0a0a12] border-white'
+                : 'border-white/15 text-white/60 hover:text-white hover:border-white/30'
                 }`}
             >
               {cat}
@@ -51,12 +51,12 @@ export default function Portfolio() {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                <a href="#" className="group block relative rounded-2xl overflow-hidden aspect-[4/3]">
+                <a href="#" className="group block relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#12121c]">
                   <img
                     src={p.img}
                     alt={p.title}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-5">

@@ -70,17 +70,17 @@ function Hero() {
       />
       <div className="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-fuchsia-600/20 blur-[120px]" />
 
-      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[60%_40%] gap-16 items-center">
         <Reveal>
           <p className="inline-flex items-center gap-2 text-[12px] text-white/60 border border-white/10 bg-white/[0.03] rounded-full px-3.5 py-1.5 mb-5 mt-5">
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
             </span>
-            Welcome to Creative Crew .
+            Welcome to Creative Crew
           </p>
 
-          <h1 className="text-5xl sm:text-[64px] font-bold text-white tracking-[-0.03em] leading-[1.03] flex flex-wrap gap-x-3">
+          <h1 className="sm:text-[60px] text-5xl font-bold text-white tracking-[-0.03em] leading-[1.07] flex flex-wrap gap-x-3">
             <BlurText
               text="We Build Digital"
               delay={120}
@@ -115,10 +115,7 @@ function Hero() {
               Book free consultation
               <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <Link
-              to="/portfolio"
-              className="group inline-flex items-center gap-1.5 text-violet-300 text-[14px] font-medium px-4 py-2 rounded-full border border-violet-400/30 hover:text-violet-200 hover:border-violet-400/60 transition-colors"
-            >
+            <Link to="/portfolio" className="group block relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#12121c]">
               Explore portfolio
               <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
@@ -162,7 +159,6 @@ function Hero() {
               behindGlowEnabled
               behindGlowColor="rgba(167, 139, 250, 0.55)"
               innerGradient="linear-gradient(145deg,#7c3aed55 0%,#e879f944 100%)"
-              onContactClick={() => (window.location.href = '/contact')}
             />
           </div>
         </Reveal>
@@ -180,7 +176,7 @@ function TrustedBy() {
   return (
     <section className="bg-[#0a0a12] pb-10 sm:pb-24 px-6 overflow-hidden">
       <Reveal>
-        <p className="text-center text-[15px] tracking-[0.2em] uppercase text-white/30 mb-8">
+        <p className="text-center text-[15px] tracking-[0.2em] uppercase text-white/5 0 mb-8">
           Trusted by ambitious brands
         </p>
       </Reveal>
@@ -192,14 +188,14 @@ function TrustedBy() {
           {loop.map((b, i) => (
             <span
               key={`${b.name}-${i}`}
-              className="flex items-center justify-center whitespace-nowrap transition-opacity"
+              className="flex items-center justify-center whitespace-nowrap transition-opacity aspect-video"
             >
               <img
                 src={b.logo}
                 alt={b.name}
                 loading="lazy"
                 draggable={false}
-                className="h-20 sm:h-15 w-auto opacity-100 transition-opacity object-contain"
+                className="h-20 sm:h-10 w-auto opacity-100 transition-opacity object-contain"
               />
             </span>
           ))}
@@ -238,9 +234,7 @@ function CapabilityCard({ c, i, Icon }) {
       />
 
       <div className="relative z-10 h-full flex flex-col">
-        <div className="flex items-center justify-between mb-4">
-          ...
-        </div>
+
         <h3 className="text-[15px] font-semibold text-[#0a0a12] mb-1.5">{c.title}</h3>
         <p className="text-[13px] text-[#0a0a12]/55 leading-relaxed mb-4">{c.desc}</p>
         <Link
@@ -389,9 +383,7 @@ function Process() {
 
   return (
     <section ref={sectionRef} className="relative bg-white">
-      {/* No manual height={stepCount * 100vh} wrapper needed — useScrollPin's
-          pinSpacing creates the equivalent scroll space automatically. */}
-      <div ref={pinRef} className="relative min-h-screen flex items-center py-1  sm:py-24 overflow-hidden">
+      <div ref={pinRef} className="relative min-h-screen flex items-center py-1 sm:py-24 overflow-hidden">
         <div className="absolute top-1/3 right-0 w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] bg-violet-200/25 blur-[90px] sm:blur-[110px] rounded-full pointer-events-none" />
 
         <div className="w-full max-w-7xl mx-auto px-4">
@@ -399,29 +391,96 @@ function Process() {
             <SectionHeading eyebrow="Our process" title="A five-step system," accent=" Built to win" align="left" />
           </Reveal>
 
-          {/* Horizontal timeline: track fills continuously with scroll progress,
-              nodes activate as the timeline reaches them */}
-          <div className="relative mt-10 sm:mt-14 mb-10 sm:mb-14">
-            {/* Dots row — fixed height so the line can center against it precisely */}
-            <div className="relative h-4">
-              <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-[2px] bg-[#0a0a12]/10 rounded-full">
+          {/* ── DESKTOP LAYOUT: full-width horizontal timeline on top, larger Lottie + text below ── */}
+          <div className="hidden md:flex md:flex-col justify-center min-h-[calc(100vh-160px)]">
+            {/* Timeline — grid with one column per step so labels each get their own
+                slot and can never overlap, no matter how many steps or how long the titles are */}
+            <div className="relative mb-16 max-w-4xl mx-auto w-full">
+              <div className="relative h-4">
+                <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-[2px] bg-[#0a0a12]/10 rounded-full">
+                  <div
+                    className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full transition-[width] duration-300 ease-out"
+                    style={{ width: `${fillPercent}%` }}
+                  />
+                </div>
                 <div
-                  className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full"
-                  style={{ width: `${fillPercent}%` }}
-                />
+                  className="relative grid h-full"
+                  style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}
+                >
+                  {processSteps.map((s, i) => {
+                    const isActive = i === activeStep
+                    const isDone = i < activeStep
+                    return (
+                      <div key={s.n} className="flex justify-center">
+                        <span
+                          className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 ${isActive
+                            ? 'bg-indigo-600 border-indigo-600 scale-125'
+                            : isDone
+                              ? 'bg-indigo-600 border-indigo-600'
+                              : 'bg-white border-[#0a0a12]/15'
+                            }`}
+                        />
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-              <div className="relative flex justify-between h-full">
+
+              <div
+                className="relative grid mt-3"
+                style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}
+              >
                 {processSteps.map((s, i) => {
                   const isActive = i === activeStep
                   const isDone = i < activeStep
                   return (
                     <span
                       key={s.n}
-                      className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 ${isActive
-                        ? 'bg-indigo-600 border-indigo-600 scale-125'
+                      className={`text-[13px] font-medium text-center px-1 transition-colors duration-300 ${isActive || isDone ? 'text-[#0a0a12]' : 'text-[#0a0a12]/35'
+                        }`}
+                    >
+                      {s.title}
+                    </span>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Lottie + text — centered, capped width so they sit close together
+                instead of stretching across the full page at wide viewports */}
+            <div className="grid md:grid-cols-[1.1fr_1fr] gap-14 lg:gap-20 items-center max-w-5xl mx-auto w-full">
+              <LottiePanel
+                active={active}
+                lottieFailed={lottieFailed}
+                setLottieFailed={setLottieFailed}
+                activeStep={activeStep}
+              />
+              <StepText active={active} activeStep={activeStep} />
+            </div>
+          </div>
+
+          {/* ── MOBILE LAYOUT: vertical timeline on the left, Lottie + text stacked on the right ── */}
+          <div className="grid md:hidden grid-cols-[44px_1fr] gap-5 min-h-[520px]">
+            {/* Vertical track */}
+            <div className="relative flex flex-col items-center pt-2">
+              <div className="absolute top-2 bottom-2 left-1/2 -translate-x-1/2 w-[2px] bg-[#0a0a12]/10 rounded-full overflow-hidden">
+                <div
+                  className="w-full bg-gradient-to-b from-indigo-500 to-violet-500 rounded-full transition-[height] duration-300 ease-out"
+                  style={{ height: `${fillPercent}%` }}
+                />
+              </div>
+              <div className="relative flex flex-col justify-between h-full py-2">
+                {processSteps.map((s, i) => {
+                  const isActive = i === activeStep
+                  const isDone = i < activeStep
+                  return (
+                    <span
+                      key={s.n}
+                      className={`block w-3.5 h-3.5 rounded-full border-2 transition-all duration-300 bg-white ${isActive
+                        ? 'border-indigo-600 bg-indigo-600 scale-125'
                         : isDone
-                          ? 'bg-indigo-600 border-indigo-600'
-                          : 'bg-white border-[#0a0a12]/15'
+                          ? 'border-indigo-600 bg-indigo-600'
+                          : 'border-[#0a0a12]/15'
                         }`}
                     />
                   )
@@ -429,88 +488,94 @@ function Process() {
               </div>
             </div>
 
-            {/* Labels row — separate, so its text height/wrap can never affect line position */}
-            <div className="flex justify-between mt-2">
-              {processSteps.map((s, i) => {
-                const isActive = i === activeStep
-                const isDone = i < activeStep
-                return (
-                  <span
-                    key={s.n}
-                    className={`text-xs font-medium text-center transition-colors duration-300 ${isActive || isDone ? 'text-[#0a0a12]' : 'text-[#0a0a12]/35'
-                      }`}
-                  >
-                    {s.title}
-                  </span>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Lottie left, text right */}
-          <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-center">
-            <div className="relative rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-6 sm:p-8 overflow-hidden w-full max-w-[420px] mx-auto lg:mx-0 aspect-square">
-              <div className="w-full h-full relative">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeStep}
-                    initial={{ opacity: 0, y: 24, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -24, scale: 0.96 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 w-full h-full flex items-center justify-center"
-                  >
-                    {!lottieFailed && active.lottie ? (
-                      <LottieWithFallback
-                        key={active.lottie}
-                        src={active.lottie}
-                        onError={() => setLottieFailed(true)}
-                      />
-                    ) : (
-                      <FallbackVisual label={active.title} />
-                    )}
-                  </motion.div>
-                </AnimatePresence>
+            {/* Step number labels beside each dot, aligned via same flex distribution */}
+            <div className="flex flex-col justify-center gap-6">
+              <div className="rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-5 overflow-hidden w-full max-w-[400px] aspect-square relative">
+                <LottiePanel
+                  active={active}
+                  lottieFailed={lottieFailed}
+                  setLottieFailed={setLottieFailed}
+                  activeStep={activeStep}
+                  compact
+                />
               </div>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`badge-${activeStep}`}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute bottom-4 right-4 rounded-xl border border-[#0a0a12]/10 bg-white px-3.5 py-2.5 shadow-card"
-                >
-                  <p className="text-[10px] text-[#0a0a12]/40">Step {active.n}</p>
-                  <p className={`text-sm font-bold bg-gradient-to-r ${active.accent} bg-clip-text text-transparent`}>
-                    {active.title}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            <div className="relative min-h-[180px]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, x: 32, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, x: -32, filter: 'blur(10px)' }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }}
-                >
-                  <p className="text-xs font-semibold mb-2 text-violet-500">{active.n}</p>
-                  <h3 className="font-bold text-3xl sm:text-4xl text-[#0a0a12] leading-tight mb-4">
-                    {active.title}
-                  </h3>
-                  <p className="text-[14px] sm:text-[15px] text-[#0a0a12]/55 max-w-lg">{active.desc}</p>
-                </motion.div>
-              </AnimatePresence>
+              <StepText active={active} activeStep={activeStep} compact />
             </div>
           </div>
         </div>
       </div>
     </section>
+  )
+}
+
+// Shared Lottie/fallback panel — used by both desktop and mobile layouts so
+// the pinned scroll state drives the same visual in either arrangement.
+function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compact = false }) {
+  return (
+    <div className={`relative w-full h-full ${compact ? '' : 'rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-8 sm:p-10 overflow-hidden max-w-[420px] md:max-w-[560px] mx-auto md:mx-0 aspect-square'}`}>
+      <div className="w-full h-full relative">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeStep}
+            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -24, scale: 0.96 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 w-full h-full flex items-center justify-center"
+          >
+            {!lottieFailed && active.lottie ? (
+              <LottieWithFallback
+                key={active.lottie}
+                src={active.lottie}
+                onError={() => setLottieFailed(true)}
+              />
+            ) : (
+              <FallbackVisual label={active.title} />
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`badge-${activeStep}`}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.3 }}
+          className="absolute bottom-4 right-4 md:bottom-5 md:right-5 rounded-xl border border-[#0a0a12]/10 bg-white px-3.5 py-2.5 md:px-4 md:py-3 shadow-card"
+        >
+          <p className="text-[10px] md:text-[11px] text-[#0a0a12]/40">Step {active.n}</p>
+          <p className={`text-sm md:text-base font-bold bg-gradient-to-r ${active.accent} bg-clip-text text-transparent`}>
+            {active.title}
+          </p>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  )
+}
+
+// Shared step-title/description block for both layouts.
+function StepText({ active, activeStep, compact = false }) {
+  return (
+    <div className={`relative ${compact ? 'min-h-[110px] text-left' : 'min-h-[180px]'}`}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeStep}
+          initial={{ opacity: 0, x: compact ? 0 : 32, y: compact ? 16 : 0, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, x: 0, y: 0, filter: 'blur(0px)' }}
+          exit={{ opacity: 0, x: compact ? 0 : -32, y: compact ? -16 : 0, filter: 'blur(10px)' }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <p className="text-xs font-semibold mb-2 text-violet-500">{active.n}</p>
+          <h3 className={`font-bold text-[#0a0a12] leading-tight mb-3 ${compact ? 'text-2xl' : 'text-3xl sm:text-4xl mb-4'}`}>
+            {active.title}
+          </h3>
+          <p className={`text-[#0a0a12]/55 ${compact ? 'text-[13.5px] max-w-xs' : 'text-[14px] sm:text-[15px] max-w-lg'}`}>
+          </p>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   )
 }
 

@@ -52,8 +52,8 @@ function ServiceList() {
             key={s.n}
             className={`py-20 sm:py-24 px-6 ${i === 0 ? 'pt-24 sm:pt-32' : ''} ${dark ? 'bg-[#0a0a12]' : 'bg-white'}`}
           >
-            <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
-              <Reveal className={i % 2 === 1 ? 'lg:order-2' : ''}>
+            <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.3fr_1.3fr] gap-12 items-center">
+              <Reveal className={i % 2 === 0 ? 'lg:order-2' : ''}>
                 <p className={`text-xs font-semibold mb-3 flex items-center gap-2 ${dark ? 'text-violet-400' : 'text-violet-500'}`}>
                   <span className="w-1.5 h-1.5 rounded-full bg-current shrink-0" /> Service · {s.n}
                 </p>
@@ -97,10 +97,10 @@ function ServiceList() {
                 </div>
               </Reveal>
 
-              <Reveal delay={0.1} className={`w-full ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+              <Reveal delay={0.1} className={`w-full ${i % 2 === 0 ? 'lg:order-1' : ''}`}>
                 <div
                   className="w-full max-w-[480px] mx-auto aspect-square rounded-3xl border border-white/10 flex flex-col justify-between p-8 relative overflow-hidden bg-cover bg-center"
-                  style={{ backgroundImage: `url(${s.image})` }}
+                  style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url(${s.image})` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/10 to-black/10" />
 

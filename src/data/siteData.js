@@ -16,6 +16,13 @@ import img9 from '../assets/9.png'
 import img9Webp from '../assets/9.webp'
 
 import akashImg from '../assets/akash.jpeg'
+import Neeraj from '../assets/Neeraj.jpeg'
+import SohilSir from '../assets/sohilSir.png'
+import Pawan from '../assets/Pawan.png'
+import Samar from '../assets/Samar.jpeg'
+import Chandu from '../assets/Chandu.png'
+import Arman from '../assets/Arman.jpeg'
+import Salman from '../assets/Salman.jpeg'
 import ccLogo from '../assets/cc.png'
 import Ncf from '../assets/NCF.png'
 import SocialMedia from '../assets/SocialMedia.png'
@@ -24,9 +31,9 @@ import Website from '../assets/Website.png'
 export const siteConfig = {
   name: 'Creative Crew',
   tagline: 'Let\'s build something unforgettable.',
-  email: '@creativecrew',
+  email: 'crewcreative98@gmail.com',
   phone: '+91 9971702329',
-  location: 'Remote-first · San Francisco · Berlin',
+  location: 'Building No.532/1 Bank Colony Deoli Village New Delhi 110062',
   hours: 'Mon–Sat · 8am–7pm PT',
 }
 
@@ -83,7 +90,6 @@ export const trustedBrands = [
   { name: 'Kairos', logo: img6 },
   { name: 'Helix', logo: img7 },
   { name: 'Meridian', logo: img9 },
-  // additional logo variants/assets
   { name: 'Meridian (Alt)', logo: img9Webp },
 ]
 
@@ -178,36 +184,33 @@ export const faqs = [
 ]
 
 export const testimonials = [
-  { quote: 'Creative Crew rebuilt our funnel in 30 days. Revenue doubled the next quarter.', name: 'Sarah Chen', role: 'CEO, Nova Retail' },
-  { quote: 'The most obsessive design team I have ever worked with. Every pixel matters.', name: 'Marcus Weill', role: 'Founder, Orbit Studios' },
+  { quote: 'Creative Crew rebuilt our funnel in 30 days. Revenue doubled the next quarter.', name: 'Sarah Khan', role: 'CEO, Nova Retail' },
+  { quote: 'The most obsessive design team I have ever worked with. Every pixel matters.', name: 'Arjun Singh', role: 'Founder, Orbit Studios' },
   { quote: 'They shipped a POS and LMS that our team actually enjoys using. Rare.', name: 'Priya Nair', role: 'COO, Kairos' },
-  { quote: 'Best-in-class creative + hard-nosed performance. This is our long-term partner.', name: 'Dan Sokolov', role: 'CMO, Helix Media' },
+  { quote: 'Best-in-class creative + hard-nosed performance. This is our long-term partner.', name: 'Dinesh', role: 'CMO, Helix Media' },
 ]
 
 export const portfolioItems = [
-  { title: 'Post Website', category: 'Software', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80' },
-  { title: 'LMS Platforms', category: 'Web', img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80' },
-  { title: 'Social media mangment', category: 'Graphic Design', img: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&q=80' },
-  { title: 'Funnel Marketing', category: 'Video Editing', img: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800&q=80' },
-  { title: 'Meridian NCF Funnel', category: 'Web', img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80' },
-  { title: 'Nova Campaign Film', category: 'Video Editing', img: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&q=80' },
-  { title: 'Quanta Analytics UI', category: 'Software', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80' },
-  { title: 'Velvet Poster Series', category: 'Graphic Design', img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80' },
+  { title: 'Website Developmente', category: 'Web', img: Website },
+  { title: 'Social Media Marketing', category: 'Social Media', img: SocialMedia },
+  { title: 'Software Development', category: 'Software', img: Software },
+  { title: 'NCF Funnel', category: 'Marketing', img: Ncf },
 ]
+
 
 export const filterCategories = ['All', 'Marketing', 'Social Media','Software', 'Web' ]
 
 export const teamMembers = [
-  { name: 'Sohil Alvi', role: 'Founder & Director', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },
+  { name: 'Sohil Alvi', role: 'Founder & Director', img: SohilSir },
   { name: 'Akash Nagar', role: 'Creative Director', img: akashImg },
+  { name: 'Pawan Singh', role: 'Head of Management', img: Pawan },
   { name: 'Arjun Prasad', role: 'Technical Head', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80' },
-  { name: 'Pawan Singh', role: 'Head of Management', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80' },
-  { name: 'Chandru', role: 'Social Media Head', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },
+  { name: 'Chandru', role: 'Social Media Head', img: Chandu },
   { name: 'Abhishek Singh', role: 'Video Editing Head', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
-  { name: 'Salman Alvi', role: 'Client Management', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80' },
-  { name: 'Arman Singh Rawat', role: 'Developer & Designer', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80' },
-  { name: 'Samresh Mali', role: 'Video Editor', img: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&q=80' },
-  { name: 'Neeraj Sharma', role: 'Developer', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
+  { name: 'Salman Alvi', role: 'Client Management', img: Salman },
+  { name: 'Arman Singh Rawat', role: 'Developer & Designer', img: Arman },
+  { name: 'Samresh Mali', role: 'Video Editor', img: Samar },
+  { name: 'Neeraj Sharma', role: 'Developer', img: Neeraj },
 ]
 
 export const timeline = [
