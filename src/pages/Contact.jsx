@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Listbox } from '@headlessui/react'
 import { Mail, Phone, MapPin, Clock, Instagram, Twitter, Linkedin, Youtube, Check, ChevronDown } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import { siteConfig, budgetOptions, services } from '../data/siteData'
+import BookAppointment from '../components/BookAppointment'
 
 // Replace with your deployed Google Apps Script Web App URL (see setup notes below)
 const GOOGLE_SHEET_ENDPOINT = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec'
@@ -12,6 +14,18 @@ const GOOGLE_SHEET_ENDPOINT = 'https://script.google.com/macros/s/YOUR_DEPLOYMEN
 const serviceOptions = services.map((s) => s.title)
 
 export default function Contact() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.hash === '#book-a-call') {
+      // wait a tick so PageTransition's mount animation has laid out the
+      // section before we try to scroll to it
+      const timer = setTimeout(() => {
+        document.getElementById('book-a-call')?.scrollIntoView({ behavior: 'smooth' })
+      }, 300)
+      return () => clearTimeout(timer)
+    }
+  }, [location])
   return (
     <PageTransition>
       <section className="relative pt-24 sm:pt-40 pb-20 px-6 bg-[#0a0a12] overflow-hidden">
@@ -34,6 +48,8 @@ export default function Contact() {
           </Reveal>
         </div>
       </section>
+
+      <BookAppointment />
     </PageTransition>
   )
 }

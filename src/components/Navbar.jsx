@@ -55,18 +55,11 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
-            <a
-              href="tel:+14155550142"
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/30 transition-colors"
-              aria-label="Call us"
-            >
-              <Phone size={13} />
-            </a>
 
             <div className="relative group">
               <div className="absolute inset-0 rounded-full bg-violet-400/60 blur-xl scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <Link
-                to="/contact"
+                to="/contact#book-a-call"
                 className="relative inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#0a0a12] text-[14px] font-semibold px-4 py-2.5 border border-white/20 shadow-sm hover:bg-white/70 transition-colors duration-300"
               >
                 Book a call

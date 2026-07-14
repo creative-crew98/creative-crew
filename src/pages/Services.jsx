@@ -50,7 +50,7 @@ function ServiceList() {
         return (
           <div
             key={s.n}
-            className={` pt-10 sm:pt-24 py-20 px-6 ${dark ? 'bg-[#0a0a12]' : 'bg-white'}`}
+            className={`py-20 sm:py-24 px-6 ${i === 0 ? 'pt-24 sm:pt-32' : ''} ${dark ? 'bg-[#0a0a12]' : 'bg-white'}`}
           >
             <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
               <Reveal className={i % 2 === 1 ? 'lg:order-2' : ''}>
@@ -97,9 +97,9 @@ function ServiceList() {
                 </div>
               </Reveal>
 
-              <Reveal delay={0.1} className={i % 2 === 1 ? 'lg:order-1' : ''}>
+              <Reveal delay={0.1} className={`w-full ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <div
-                  className="aspect-square rounded-3xl border border-white/10 flex flex-col justify-between p-8 relative overflow-hidden bg-cover bg-center"
+                  className="w-full max-w-[480px] mx-auto aspect-square rounded-3xl border border-white/10 flex flex-col justify-between p-8 relative overflow-hidden bg-cover bg-center"
                   style={{ backgroundImage: `url(${s.image})` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/10 to-black/10" />
