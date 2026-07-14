@@ -17,7 +17,7 @@ import img9Webp from '../assets/9.webp'
 
 import akashImg from '../assets/akash.jpeg'
 import Neeraj from '../assets/Neeraj.jpeg'
-import SohilSir from '../assets/sohilSir.png'
+import SohilSir from '../assets/SohilSir.png'
 import Pawan from '../assets/Pawan.png'
 import Samar from '../assets/Samar.jpeg'
 import Chandu from '../assets/Chandu.png'
