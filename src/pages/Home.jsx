@@ -115,7 +115,10 @@ function Hero() {
               Book free consultation
               <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <Link to="/portfolio" className="group block relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#12121c]">
+            <Link
+              to="/portfolio"
+              className="group inline-flex items-center gap-1.5 text-violet-300 text-[14px] font-medium px-4 py-2 rounded-full border border-violet-400/30 hover:text-violet-200 hover:border-violet-400/60 transition-colors"
+            >
               Explore portfolio
               <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
@@ -649,7 +652,8 @@ function FeaturedWork() {
                   src={p.img}
                   alt={p.title}
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  // Inside FeaturedWork() only
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-5">
