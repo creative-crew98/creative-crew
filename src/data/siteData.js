@@ -205,7 +205,7 @@ export const teamMembers = [
   { name: 'Akash Nagar', role: 'Creative Director', img: akashImg },
   { name: 'Pawan Singh', role: 'Head of Management', img: Pawan },
   { name: 'Arjun Prasad', role: 'Technical Head', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80' },
-  { name: 'Chandru', role: 'Social Media Head', img: Chandu },
+  { name: 'Chandr prakash', role: 'Social Media Head', img: Chandu },
   { name: 'Abhishek Singh', role: 'Video Editing Head', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
   { name: 'Salman Alvi', role: 'Client Management', img: Salman },
   { name: 'Arman Singh Rawat', role: 'Developer & Designer', img: Arman },
