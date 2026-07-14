@@ -12,8 +12,9 @@ import CtaBanner from '../components/CtaBanner'
 import TestimonialsSection from '../components/TestimonialsSection'
 import BlurText from '../animations/BlurText'
 import {
-  capabilities, stats, processSteps, trustedBrands, faqs, portfolioItems,
+  capabilities, stats, processSteps, faqs, portfolioItems,
 } from '../data/siteData'
+// trustedBrands
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import yourPhoto from '../assets/Photo.jpeg'
 import ProfileCard from '../animations/ProfileCard'
@@ -35,7 +36,7 @@ export default function Home() {
   return (
     <PageTransition>
       <Hero />
-      <TrustedBy />
+      {/* <TrustedBy /> */}
       <Capabilities />
       <Difference />
       <Process />
@@ -173,40 +174,35 @@ function Hero() {
 // Animated "growth dashboard" mockup — a smooth SVG line chart with a
 // drawing-in animation, replacing a plain bar chart for a more premium feel.
 
-function TrustedBy() {
-  // Duplicate the list so the marquee can loop seamlessly at -50%.
-  const loop = [...trustedBrands, ...trustedBrands]
-  return (
-    <section className="bg-[#0a0a12] pb-10 sm:pb-24 px-6 overflow-hidden">
-      <Reveal>
-        <p className="text-center text-[15px] tracking-[0.2em] uppercase text-white/5 0 mb-8">
-          Trusted by ambitious brands
-        </p>
-      </Reveal>
-      <div
-        className="relative max-w-5xl mx-auto overflow-hidden"
-        style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
-      >
-        <div className="flex w-max gap-16 items-center animate-marquee">
-          {loop.map((b, i) => (
-            <span
-              key={`${b.name}-${i}`}
-              className="flex items-center justify-center whitespace-nowrap transition-opacity aspect-video"
-            >
-              <img
-                src={b.logo}
-                alt={b.name}
-                loading="lazy"
-                draggable={false}
-                className="h-20 sm:h-10 w-auto opacity-100 transition-opacity object-contain"
-              />
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+// function TrustedBy() {
+//   // Duplicate the list so the marquee can loop seamlessly at -50%.
+//   const loop = [...trustedBrands, ...trustedBrands]
+//   return (
+//     <section className="bg-[#0a0a12] pb-10 sm:pb-24 px-6 overflow-hidden">
+//       <Reveal>
+//         <p className="text-center text-[15px] tracking-[0.2em] uppercase text-white/5 0 mb-8">
+//           Trusted by ambitious brands
+//         </p>
+//       </Reveal>
+//       <div className="flex w-max gap-16 items-center animate-marquee">
+//         {loop.map((b, i) => (
+//           <span
+//             key={`${b.name}-${i}`}
+//             className="flex items-center justify-center whitespace-nowrap transition-opacity aspect-video"
+//           >
+//             <img
+//               src={b.logo}
+//               alt={b.name}
+//               loading="lazy"
+//               draggable={false}
+//               className="h-12  sm:h-10 w-auto opacity-100 transition-opacity object-contain"
+//             />
+//           </span>
+//         ))}
+//       </div>
+//     </section>
+//   )
+// }
 function CapabilityCard({ c, i, Icon }) {
   const [active, setActive] = useState(false)
 
