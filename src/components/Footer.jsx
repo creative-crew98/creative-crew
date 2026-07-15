@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Instagram, Twitter, Linkedin, Youtube, ArrowUpRight } from 'lucide-react'
 import { siteConfig, footerColumns, socialLinks } from '../data/siteData'
-import cc from '../assets/cc.png'
+import cc from '../assets/webp/cc.webp'
 
 // Maps the `label` in siteData's socialLinks to an actual icon component,
 // so adding/removing a platform in siteData.js is all you need to do.

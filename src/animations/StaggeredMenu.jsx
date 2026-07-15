@@ -1,7 +1,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
-import cc from '../assets/cc.png';
+import cc from '../assets/webp/cc.webp';
 
 export const StaggeredMenu = ({
     position = 'right',

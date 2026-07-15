@@ -16,7 +16,7 @@ import {
 } from '../data/siteData'
 // trustedBrands
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import yourPhoto from '../assets/Photo.jpeg'
+import yourPhoto from '../assets/webp/Photo.webp'
 import ProfileCard from '../animations/ProfileCard'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -542,7 +542,7 @@ function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compac
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.3 }}
-          className="absolute bottom-4 right-4 md:bottom-5 md:right-5 rounded-xl border border-[#0a0a12]/10 bg-white px-3.5 py-2.5 md:px-4 md:py-3 shadow-card"
+          className="absolute bottom-1 right-0 md:bottom-5 md:right-5 rounded-xl border border-[#0a0a12]/10 bg-white px-3.5 py-2.5 md:px-4 md:py-3 shadow-card"
         >
           <p className="text-[10px] md:text-[11px] text-[#0a0a12]/40">Step {active.n}</p>
           <p className={`text-sm md:text-base font-bold bg-gradient-to-r ${active.accent} bg-clip-text text-transparent`}>

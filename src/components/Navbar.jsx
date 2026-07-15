@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import { navLinks } from '../data/siteData'
-import cc from '../assets/cc.png'
+import cc from '../assets/webp/cc.webp'
 import StaggeredMenu from '../animations/StaggeredMenu'
 
 const socialItems = [
