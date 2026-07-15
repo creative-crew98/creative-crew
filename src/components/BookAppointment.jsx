@@ -9,7 +9,7 @@ import { services } from '../data/siteData'
 // storing bookings in a "Bookings" sheet AND emailing the client + you.
 // See google-apps-script/Code.gs for the backend, and BOOKING_SETUP.md for
 // deployment steps.
-const BOOKING_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwJNVWQ9DDpVrQu9rFW83EZQFkTr5CKX590jVvmi8PZkNba0_6VyvDCsrqI7PjrJ9SQLQ/exec'
+const BOOKING_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyexMuKMEMkmvPsjPQ1mNg0y_6lg31xPd65x48dsNkbPj0K1HOLjXbPWX3kZKLA5-M-DQ/exec'
 
 const serviceOptions = services.map((s) => s.title)
 
