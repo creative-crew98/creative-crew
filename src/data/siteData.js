@@ -32,6 +32,7 @@ import strategyLottie from '../assets/LottiFIles/Strategy.lottie?url'
 import designDevLottie from '../assets/LottiFIles/Design&Development.lottie?url'
 import launchLottie from '../assets/LottiFIles/Lounch.lottie?url'
 import growthLottie from '../assets/LottiFIles/Growth.lottie?url'
+
 export const siteConfig = {
   name: 'Creative Crew',
   tagline: 'Let\'s build something unforgettable.',
@@ -78,8 +79,9 @@ export const footerColumns = [
   {
     heading: 'Legal',
     links: [
-      { label: 'Privacy', to: '/privacy' },
-      { label: 'Terms', to: '/terms' },
+      { label: 'Privacy Policy', to: '/privacy-policy' },
+      { label: 'Terms & Conditions', to: '/terms' },
+      { label: 'No Refund Policy', to: '/no-refund-policy' },
     ],
   },
 ]
@@ -143,7 +145,7 @@ export const services = [
     tagline: 'Funnels that convert while you sleep.',
     desc: 'No chase framework engineered around your customer journey.',
     features: ['Campaign setup & optimize', 'Lead mangament', 'Scripting & Editing', 'Lms & landing page'],
-    stack: ['Meta ads','Ads creatives', 'Copy writing','Startegy development'],
+    stack: ['Meta ads', 'Ads creatives', 'Copy writing', 'Startegy development'],
     price: 'From $6.5k',
 
     image: Ncf
@@ -155,7 +157,7 @@ export const services = [
     features: ['Content calendar', 'Reels & shorts', 'Paid ads', 'Community mgmt'],
     stack: ['Instagram', 'Facebook', 'YouTube', 'LinkedIn'],
     price: 'From $3.5k/mo',
-    image:SocialMedia
+    image: SocialMedia
   },
   {
     n: '03', icon: 'Globe', title: 'Website Development',
@@ -200,7 +202,7 @@ export const portfolioItems = [
 ]
 
 
-export const filterCategories = ['All', 'Marketing', 'Social Media','Software', 'Web' ]
+export const filterCategories = ['All', 'Marketing', 'Social Media', 'Software', 'Web']
 
 export const teamMembers = [
   { name: 'Sohil Alvi', role: 'Founder & Director', img: SohilSir },

@@ -9,6 +9,9 @@ import Services from './pages/Services'
 import Portfolio from './pages/Portfolio'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+import PrivacyPolicy from './components/Privacypolicy'
+import TermsAndConditions from './components/Termsandconditions'
+import NoRefundPolicy from './components/Norefundpolicy'
 
 export default function App() {
   const location = useLocation()
@@ -25,6 +28,9 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/no-refund-policy" element={<NoRefundPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
