@@ -22,6 +22,8 @@ import Samar from '../assets/webp/Samar.webp'
 import Chandu from '../assets/webp/Chandu.webp'
 import Arman from '../assets/webp/Arman.webp'
 import Salman from '../assets/webp/Salman.webp'
+import ArjunSir from '../assets/webp/arjunsir.webp'
+import Abhishek from '../assets/webp/Abhishek.webp'
 import ccLogo from '../assets/webp/cc.webp'
 import Ncf from '../assets/webp/NCF.webp'
 import SocialMedia from '../assets/webp/SocialMedia.webp'
@@ -208,9 +210,9 @@ export const teamMembers = [
   { name: 'Sohil Alvi', role: 'Founder & Director', img: SohilSir },
   { name: 'Akash Nagar', role: 'Creative Director', img: akashImg },
   { name: 'Pawan Singh', role: 'Head of Management', img: Pawan },
-  { name: 'Arjun Prasad', role: 'Technical Head', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80' },
+  { name: 'Arjun Prasad', role: 'Technical Head', img: ArjunSir },
   { name: 'Chandr prakash', role: 'Social Media Head', img: Chandu },
-  { name: 'Abhishek Singh', role: 'Video Editing Head', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
+  { name: 'Abhishek Singh', role: 'Video Editing Head', img: Abhishek },
   { name: 'Salman Alvi', role: 'Client Management', img: Salman },
   { name: 'Arman Singh Rawat', role: 'Developer & Designer', img: Arman },
   { name: 'Samresh Mali', role: 'Video Editor', img: Samar },
