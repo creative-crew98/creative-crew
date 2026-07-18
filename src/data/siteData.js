@@ -27,6 +27,11 @@ import Ncf from '../assets/webp/NCF.webp'
 import SocialMedia from '../assets/webp/SocialMedia.webp'
 import Software from '../assets/webp/Software.webp'
 import Website from '../assets/webp/Website.webp'
+import exploreLottie from '../assets/LottiFIles/Explore.lottie?url'
+import strategyLottie from '../assets/LottiFIles/Strategy.lottie?url'
+import designDevLottie from '../assets/LottiFIles/Design&Development.lottie?url'
+import launchLottie from '../assets/LottiFIles/Lounch.lottie?url'
+import growthLottie from '../assets/LottiFIles/Growth.lottie?url'
 export const siteConfig = {
   name: 'Creative Crew',
   tagline: 'Let\'s build something unforgettable.',
@@ -67,7 +72,6 @@ export const footerColumns = [
       { label: 'NCF Funnels', to: '/services' },
       { label: 'Social Marketing', to: '/services' },
       { label: 'Web Development', to: '/services' },
-      { label: 'LMS & POS', to: '/services' },
       { label: 'Branding & Video', to: '/services' },
     ],
   },
@@ -126,12 +130,11 @@ export const stats = [
 ]
 
 export const processSteps = [
-  { n: "01", title: "Explore", desc: "Deep dive into your goals, users, and unfair advantages.", accent: "from-violet-500 to-fuchsia-500", lottie: "https://lottie.host/76bd5d4d-0d46-4515-8cc1-0819492469df/AHrXtcpk4H.lottie" },
-  { n: "02", title: "Strategy", desc: "Positioning, funnels, KPIs — the master plan.", accent: "from-indigo-500 to-violet-500", lottie: "https://lottie.host/ecdad5e9-0856-4562-90cc-53597f00807b/Di4rkinwxG.lottie" },
-  { n: "03", title: "Design & Development", desc: "Fast, scalable, production-grade builds.", accent: "from-blue-500 to-violet-500",lottie: "https://lottie.host/f94b1858-6da9-4659-8e58-886a73c45363/s9v42HEscb.lottie" },
-  { n: "04", title: "Launch", desc: "A polished go-live your customers remember.", accent: "from-violet-500 to-purple-500", lottie: "https://lottie.host/4117192c-b817-4d64-8f12-35126a0db0e7/BYtrKA44hI.lottie" },
-  { n: "05", title: "Growth", desc: "Iterate, optimize, compound — every week.", accent: "from-fuchsia-500 to-rose-500", lottie: "https://lottie.host/18b0c990-dc30-4c7c-b7c2-96db80cb9925/bjGxJFBwPi.json"
-   },
+  { n: "01", title: "Explore", desc: "Deep dive into your goals, users, and unfair advantages.", accent: "from-violet-500 to-fuchsia-500", lottie: exploreLottie },
+  { n: "02", title: "Strategy", desc: "Positioning, funnels, KPIs — the master plan.", accent: "from-indigo-500 to-violet-500", lottie: strategyLottie },
+  { n: "03", title: "Design & Development", desc: "Fast, scalable, production-grade builds.", accent: "from-blue-500 to-violet-500", lottie: designDevLottie },
+  { n: "04", title: "Launch", desc: "A polished go-live your customers remember.", accent: "from-violet-500 to-purple-500", lottie: launchLottie },
+  { n: "05", title: "Growth", desc: "Iterate, optimize, compound — every week.", accent: "from-fuchsia-500 to-rose-500", lottie: growthLottie },
 ]
 
 export const services = [

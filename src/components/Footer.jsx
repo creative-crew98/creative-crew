@@ -39,20 +39,6 @@ export default function Footer() {
             <p className="text-white/50 text-sm mb-4">
               Subscribe for the occasional insight — no spam, ever.
             </p>
-            <form className="flex gap-2 max-w-sm" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                required
-                placeholder="you@company.com"
-                className="flex-1 min-w-0 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-violet-400/60 transition-colors"
-              />
-              <button
-                type="submit"
-                className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-[13px] font-semibold px-4 py-2.5 hover:opacity-90 transition-opacity"
-              >
-                Subscribe <ArrowUpRight size={13} />
-              </button>
-            </form>
           </div>
 
           {footerColumns.map((col) => (
