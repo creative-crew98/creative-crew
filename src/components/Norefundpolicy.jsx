@@ -1,5 +1,5 @@
 'use client'
-import LegalLayout from './LegalLayout'
+import LegalLayout from './Legallayout'
 
 const sections = [
     {
