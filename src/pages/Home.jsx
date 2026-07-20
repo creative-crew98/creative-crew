@@ -414,10 +414,10 @@ function Process() {
                         >
                           <span
                             className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 group-hover/dot:scale-125 ${isActive
-                                ? 'bg-indigo-600 border-indigo-600 scale-125 shadow-[0_0_0_5px_rgba(99,102,241,0.15)]'
-                                : isDone
-                                  ? 'bg-indigo-600 border-indigo-600'
-                                  : 'bg-white border-[#0a0a12]/15 group-hover/dot:border-indigo-400'
+                              ? 'bg-indigo-600 border-indigo-600 scale-125 shadow-[0_0_0_5px_rgba(99,102,241,0.15)]'
+                              : isDone
+                                ? 'bg-indigo-600 border-indigo-600'
+                                : 'bg-white border-[#0a0a12]/15 group-hover/dot:border-indigo-400'
                               }`}
                           />
                         </button>
@@ -478,10 +478,10 @@ function Process() {
                     <span
                       key={s.n}
                       className={`block w-3 h-3 rounded-full border-2 transition-all duration-300 bg-white ${isActive
-                          ? 'border-indigo-600 bg-indigo-600 scale-125 shadow-[0_0_0_4px_rgba(99,102,241,0.15)]'
-                          : isDone
-                            ? 'border-indigo-600 bg-indigo-600'
-                            : 'border-[#0a0a12]/15'
+                        ? 'border-indigo-600 bg-indigo-600 scale-125 shadow-[0_0_0_4px_rgba(99,102,241,0.15)]'
+                        : isDone
+                          ? 'border-indigo-600 bg-indigo-600'
+                          : 'border-[#0a0a12]/15'
                         }`}
                     />
                   )
@@ -512,8 +512,8 @@ function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compac
   return (
     <div
       className={`relative w-full h-full ${compact
-          ? ''
-          : 'rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-8 sm:p-10 overflow-hidden max-w-[420px] md:max-w-[560px] mx-auto md:mx-0 aspect-square'
+        ? ''
+        : 'rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-8 sm:p-10 overflow-hidden max-w-[420px] md:max-w-[560px] mx-auto md:mx-0 aspect-square'
         }`}
     >
       {!compact && (
@@ -647,12 +647,12 @@ function FeaturedWork() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {featured.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <Link
                 to="/portfolio"
-                className="group block relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-[#111118]"
+                className="group block relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#111118]"
               >
                 <img
                   src={p.img}
@@ -661,14 +661,14 @@ function FeaturedWork() {
                   className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-2.5 sm:p-5">
-                  <p className="inline-block text-[8px] sm:text-[10.5px] uppercase tracking-wide text-violet-200 bg-white/10 backdrop-blur-sm rounded-full px-2 sm:px-2.5 py-0.5 sm:py-1 mb-1 sm:mb-2">
+                <div className="absolute bottom-0 left-0 p-4 sm:p-5">
+                  <p className="inline-block text-[10px] sm:text-[10.5px] uppercase tracking-wide text-violet-200 bg-white/10 backdrop-blur-sm rounded-full px-2.5 py-1 mb-2">
                     {p.category}
                   </p>
-                  <p className="text-white text-xs sm:text-base font-semibold leading-snug">{p.title}</p>
+                  <p className="text-white text-base font-semibold leading-snug">{p.title}</p>
                 </div>
-                <span className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white/10 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-white transition-all">
-                  <ArrowUpRight size={12} className="text-white group-hover:text-[#0a0a12] transition-colors sm:w-[14px] sm:h-[14px]" />
+                <span className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-white transition-all">
+                  <ArrowUpRight size={13} className="text-white group-hover:text-[#0a0a12] transition-colors sm:w-[14px] sm:h-[14px]" />
                 </span>
               </Link>
             </Reveal>
