@@ -27,8 +27,7 @@ export default function SectionHeading({
       )}
 
       <h2
-        className={`text-4xl sm:text-5xl font-bold tracking-[-0.02em] !leading-[1.2] ${titleColor} flex flex-wrap gap-x-2 gap-y-0 sm:gap-y-4 ${isCenter ? 'justify-center' : ''
-          }`}
+        className={`text-4xl sm:text-5xl font-bold tracking-[-0.02em] !leading-[1.2] ${titleColor} ${isCenter ? 'text-center' : 'text-left'}`}
       >
         <BlurText
           text={title}
@@ -36,12 +35,11 @@ export default function SectionHeading({
           animateBy="words"
           direction="top"
           onAnimationComplete={() => setAccentVisible(true)}
-          className={titleColor}
-        />
+          className={`${titleColor} inline`}
+        />{' '}
         {accent && (
           <span
-            className={`bg-gradient-to-r from-violet-500 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent transition-opacity duration-500 ${accentVisible ? 'opacity-100' : 'opacity-0'
-              }`}
+            className={`inline bg-gradient-to-r from-violet-500 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent transition-opacity duration-500 ${accentVisible ? 'opacity-100' : 'opacity-0'}`}
           >
             {accent}
             <span className={titleColor}>.</span>

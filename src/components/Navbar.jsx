@@ -6,9 +6,8 @@ import cc from '../assets/webp/cc.webp'
 import StaggeredMenu from '../animations/StaggeredMenu'
 
 const socialItems = [
-  { label: 'Twitter', link: 'https://twitter.com' },
-  { label: 'GitHub', link: 'https://github.com' },
-  { label: 'LinkedIn', link: 'https://linkedin.com' },
+  { label: 'Instagram', link: 'https://www.instagram.com/creativecrew.co.in_?igsh=MXJ2Y29kczBhaDdzOQ==' },
+  { label: 'Youtube', link: 'https://youtu.be/sd1JXv_644Y?si=wyoFOJihFjp3e6Yh' },
 ]
 
 export default function Navbar() {

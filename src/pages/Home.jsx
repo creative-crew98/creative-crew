@@ -154,7 +154,7 @@ function Hero() {
           <div className="max-w-sm mx-auto w-full">
             <ProfileCard
               name="Sohil Alvi"
-              title="Founder & Diredtor"
+              title="Founder & Director"
               contactText="Book a call"
               avatarUrl={yourPhoto}
               showUserInfo={true}
@@ -362,8 +362,8 @@ function Difference() {
 
 'use client'
 function Process() {
-  const sectionRef = useRef(null) // trigger — defines when pinning starts/ends
-  const pinRef = useRef(null) // element that actually gets pinned
+  const sectionRef = useRef(null)
+  const pinRef = useRef(null)
   const [lottieFailed, setLottieFailed] = useState(false)
   const stepCount = processSteps.length
 
@@ -382,18 +382,16 @@ function Process() {
 
   return (
     <section ref={sectionRef} className="relative bg-white">
-      <div ref={pinRef} className="relative min-h-screen flex items-center py-1 sm:py-24 overflow-hidden">
+      <div ref={pinRef} className="relative min-h-screen flex items-center py-10 sm:py-24 overflow-hidden">
         <div className="absolute top-1/3 right-0 w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] bg-violet-200/25 blur-[90px] sm:blur-[110px] rounded-full pointer-events-none" />
 
         <div className="w-full max-w-7xl mx-auto px-4">
           <Reveal>
-            <SectionHeading eyebrow="Our process" title="A five-step system," accent=" Built to win" align="left" />
+            <SectionHeading eyebrow="Our process" title="A five-step system," accent="Built to win" align="left" />
           </Reveal>
 
-          {/* ── DESKTOP LAYOUT: full-width horizontal timeline on top, larger Lottie + text below ── */}
+          {/* ── DESKTOP ── */}
           <div className="hidden md:flex md:flex-col justify-center min-h-[calc(100vh-160px)]">
-            {/* Timeline — grid with one column per step so labels each get their own
-                slot and can never overlap, no matter how many steps or how long the titles are */}
             <div className="relative mb-16 max-w-4xl mx-auto w-full">
               <div className="relative h-4">
                 <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-[2px] bg-[#0a0a12]/10 rounded-full">
@@ -402,10 +400,7 @@ function Process() {
                     style={{ width: `${fillPercent}%` }}
                   />
                 </div>
-                <div
-                  className="relative grid h-full"
-                  style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}
-                >
+                <div className="relative grid h-full" style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}>
                   {processSteps.map((s, i) => {
                     const isActive = i === activeStep
                     const isDone = i < activeStep
@@ -413,7 +408,7 @@ function Process() {
                       <div key={s.n} className="flex justify-center">
                         <span
                           className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 ${isActive
-                            ? 'bg-indigo-600 border-indigo-600 scale-125'
+                            ? 'bg-indigo-600 border-indigo-600 scale-125 shadow-[0_0_0_5px_rgba(99,102,241,0.15)]'
                             : isDone
                               ? 'bg-indigo-600 border-indigo-600'
                               : 'bg-white border-[#0a0a12]/15'
@@ -425,10 +420,7 @@ function Process() {
                 </div>
               </div>
 
-              <div
-                className="relative grid mt-3"
-                style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}
-              >
+              <div className="relative grid mt-3" style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}>
                 {processSteps.map((s, i) => {
                   const isActive = i === activeStep
                   const isDone = i < activeStep
@@ -445,8 +437,6 @@ function Process() {
               </div>
             </div>
 
-            {/* Lottie + text — centered, capped width so they sit close together
-                instead of stretching across the full page at wide viewports */}
             <div className="grid md:grid-cols-[1.1fr_1fr] gap-14 lg:gap-20 items-center max-w-5xl mx-auto w-full">
               <LottiePanel
                 active={active}
@@ -454,21 +444,20 @@ function Process() {
                 setLottieFailed={setLottieFailed}
                 activeStep={activeStep}
               />
-              <StepText active={active} activeStep={activeStep} />
+              <StepText active={active} activeStep={activeStep} stepCount={stepCount} />
             </div>
           </div>
 
-          {/* ── MOBILE LAYOUT: vertical timeline on the left, Lottie + text stacked on the right ── */}
-          <div className="grid md:hidden grid-cols-[44px_1fr] gap-5 min-h-[520px]">
-            {/* Vertical track */}
-            <div className="relative flex flex-col items-center pt-2">
-              <div className="absolute top-2 bottom-2 left-1/2 -translate-x-1/2 w-[2px] bg-[#0a0a12]/10 rounded-full overflow-hidden">
+          {/* ── MOBILE ── */}
+          <div className="grid md:hidden grid-cols-[32px_1fr] gap-4">
+            <div className="relative flex flex-col items-center pt-1">
+              <div className="absolute top-1 bottom-1 left-1/2 -translate-x-1/2 w-[2px] bg-[#0a0a12]/10 rounded-full overflow-hidden">
                 <div
                   className="w-full bg-gradient-to-b from-indigo-500 to-violet-500 rounded-full transition-[height] duration-300 ease-out"
                   style={{ height: `${fillPercent}%` }}
                 />
               </div>
-              <div className="relative flex flex-col justify-between h-full py-2">
+              <div className="relative flex flex-col justify-between h-full py-1" style={{ minHeight: 480 }}>
                 {processSteps.map((s, i) => {
                   const isActive = i === activeStep
                   const isDone = i < activeStep
@@ -476,7 +465,7 @@ function Process() {
                     <span
                       key={s.n}
                       className={`block w-3.5 h-3.5 rounded-full border-2 transition-all duration-300 bg-white ${isActive
-                        ? 'border-indigo-600 bg-indigo-600 scale-125'
+                        ? 'border-indigo-600 bg-indigo-600 scale-125 shadow-[0_0_0_4px_rgba(99,102,241,0.15)]'
                         : isDone
                           ? 'border-indigo-600 bg-indigo-600'
                           : 'border-[#0a0a12]/15'
@@ -487,9 +476,8 @@ function Process() {
               </div>
             </div>
 
-            {/* Step number labels beside each dot, aligned via same flex distribution */}
-            <div className="flex flex-col justify-center gap-6">
-              <div className="rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-5 overflow-hidden w-full max-w-[400px] aspect-square relative">
+            <div className="flex flex-col gap-5">
+              <div className="rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-4 overflow-hidden w-full max-w-[320px] aspect-square relative mx-auto">
                 <LottiePanel
                   active={active}
                   lottieFailed={lottieFailed}
@@ -498,7 +486,7 @@ function Process() {
                   compact
                 />
               </div>
-              <StepText active={active} activeStep={activeStep} compact />
+              <StepText active={active} activeStep={activeStep} stepCount={stepCount} compact />
             </div>
           </div>
         </div>
@@ -507,11 +495,14 @@ function Process() {
   )
 }
 
-// Shared Lottie/fallback panel — used by both desktop and mobile layouts so
-// the pinned scroll state drives the same visual in either arrangement.
 function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compact = false }) {
   return (
-    <div className={`relative w-full h-full ${compact ? '' : 'rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-8 sm:p-10 overflow-hidden max-w-[420px] md:max-w-[560px] mx-auto md:mx-0 aspect-square'}`}>
+    <div
+      className={`relative w-full h-full ${compact
+        ? ''
+        : 'rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-8 sm:p-10 overflow-hidden max-w-[420px] md:max-w-[560px] mx-auto md:mx-0 aspect-square'
+        }`}
+    >
       <div className="w-full h-full relative">
         <AnimatePresence mode="wait">
           <motion.div
@@ -523,11 +514,7 @@ function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compac
             className="absolute inset-0 w-full h-full flex items-center justify-center"
           >
             {!lottieFailed && active.lottie ? (
-              <LottieWithFallback
-                key={active.lottie}
-                src={active.lottie}
-                onError={() => setLottieFailed(true)}
-              />
+              <LottieWithFallback key={active.lottie} src={active.lottie} onError={() => setLottieFailed(true)} />
             ) : (
               <FallbackVisual label={active.title} />
             )}
@@ -542,10 +529,14 @@ function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compac
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.3 }}
-          className="absolute bottom-1 right-0 md:bottom-5 md:right-5 rounded-xl border border-[#0a0a12]/10 bg-white px-3.5 py-2.5 md:px-4 md:py-3 shadow-card"
+          className={`absolute rounded-xl border border-[#0a0a12]/10 bg-white shadow-card ${compact ? 'bottom-2 right-2 px-2.5 py-1.5' : 'bottom-5 right-5 px-4 py-3'
+            }`}
         >
-          <p className="text-[10px] md:text-[11px] text-[#0a0a12]/40">Step {active.n}</p>
-          <p className={`text-sm md:text-base font-bold bg-gradient-to-r ${active.accent} bg-clip-text text-transparent`}>
+          <p className={`${compact ? 'text-[9px]' : 'text-[11px]'} text-[#0a0a12]/40`}>Step {active.n}</p>
+          <p
+            className={`font-bold bg-gradient-to-r ${active.accent} bg-clip-text text-transparent ${compact ? 'text-xs' : 'text-base'
+              }`}
+          >
             {active.title}
           </p>
         </motion.div>
@@ -554,10 +545,9 @@ function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compac
   )
 }
 
-// Shared step-title/description block for both layouts.
-function StepText({ active, activeStep, compact = false }) {
+function StepText({ active, activeStep, stepCount, compact = false }) {
   return (
-    <div className={`relative ${compact ? 'min-h-[110px] text-left' : 'min-h-[180px]'}`}>
+    <div className={`relative ${compact ? 'min-h-[130px] text-left' : 'min-h-[180px]'}`}>
       <AnimatePresence mode="wait">
         <motion.div
           key={activeStep}
@@ -566,11 +556,14 @@ function StepText({ active, activeStep, compact = false }) {
           exit={{ opacity: 0, x: compact ? 0 : -32, y: compact ? -16 : 0, filter: 'blur(10px)' }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
-          <p className="text-xs font-semibold mb-2 text-violet-500">{active.n}</p>
+          <p className="text-xs font-semibold mb-2 text-violet-500">
+            Step {String(activeStep + 1).padStart(2, '0')} / {String(stepCount).padStart(2, '0')}
+          </p>
           <h3 className={`font-bold text-[#0a0a12] leading-tight mb-3 ${compact ? 'text-2xl' : 'text-3xl sm:text-4xl mb-4'}`}>
             {active.title}
           </h3>
-          <p className={`text-[#0a0a12]/55 ${compact ? 'text-[13.5px] max-w-xs' : 'text-[14px] sm:text-[15px] max-w-lg'}`}>
+          <p className={`text-[#0a0a12]/55 leading-relaxed ${compact ? 'text-[13.5px]' : 'text-[14px] sm:text-[15px] max-w-lg'}`}>
+            {active.desc}
           </p>
         </motion.div>
       </AnimatePresence>
@@ -578,9 +571,6 @@ function StepText({ active, activeStep, compact = false }) {
   )
 }
 
-// Wraps DotLottieReact with a load timeout — if the animation hasn't
-// rendered within 8s (dead URL, network block, etc.), triggers onError
-// so the parent can swap in a fallback instead of showing a blank box.
 function LottieWithFallback({ src, onError }) {
   const loadedRef = useRef(false)
 
@@ -604,8 +594,6 @@ function LottieWithFallback({ src, onError }) {
   )
 }
 
-// Simple gradient + label fallback shown if the Lottie file fails or
-// times out, so the panel is never an empty rectangle.
 function FallbackVisual({ label }) {
   return (
     <div

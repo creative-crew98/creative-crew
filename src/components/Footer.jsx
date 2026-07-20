@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom'
-import { Instagram, Twitter, Linkedin, Youtube, ArrowUpRight } from 'lucide-react'
+import { Instagram, Youtube } from 'lucide-react'
 import { siteConfig, footerColumns, socialLinks } from '../data/siteData'
 import cc from '../assets/webp/cc.webp'
 
-// Maps the `label` in siteData's socialLinks to an actual icon component,
-// so adding/removing a platform in siteData.js is all you need to do.
+// Only these two platforms are shown in the footer.
 const socialIconMap = {
-  Instagram, Twitter, LinkedIn: Linkedin, YouTube: Youtube,
+  Instagram,
+  YouTube: Youtube,
 }
-
 export default function Footer() {
   return (
     <footer className="relative bg-[#0a0a12] overflow-hidden">
@@ -67,22 +66,25 @@ export default function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. Crafted with obsession.
           </p>
           <div className="flex items-center gap-3">
-            {socialLinks.map((s) => {
-              const Icon = socialIconMap[s.label]
-              return (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={s.label}
-                  className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-colors"
-                >
-                  <Icon size={14} />
-                </a>
-              )
-            })}
+            {socialLinks
+              .filter((s) => socialIconMap[s.label])
+              .map((s) => {
+                const Icon = socialIconMap[s.label]
+                return (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={s.label}
+                    className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-colors"
+                  >
+                    <Icon size={14} />
+                  </a>
+                )
+              })}
           </div>
+
         </div>
       </div>
     </footer>

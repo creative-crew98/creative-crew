@@ -39,9 +39,9 @@ export const siteConfig = {
   name: 'Creative Crew',
   tagline: 'Let\'s build something unforgettable.',
   email: 'crewcreative98@gmail.com',
-  phone: '+91 9971702329',
-  location: 'Building No.532/1 Bank Colony Deoli Village New Delhi 110062',
-  hours: 'Mon–Sat · 8am–7pm PT',
+  phone: '+91 9899669649',
+  location: ' 2nd Floor Building No.532/1  Bank Colony Deoli Village New Delhi 110062',
+  hours: 'Mon–Sat · 10am–7pm PT',
 }
 
 // Top nav + footer both read from this so links always match routes
@@ -54,10 +54,8 @@ export const navLinks = [
 ]
 
 export const socialLinks = [
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'Twitter', href: 'https://twitter.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'YouTube', href: 'https://youtube.com' },
+  { label: 'Instagram', href: 'https://www.instagram.com/creativecrew.co.in_?igsh=MXJ2Y29kczBhaDdzOQ==' },
+  { label: 'YouTube', href: 'https://youtu.be/sd1JXv_644Y?si=wyoFOJihFjp3e6Yh' },
 ]
 
 export const footerColumns = [

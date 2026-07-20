@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Listbox } from '@headlessui/react'
-import { Mail, Phone, MapPin, Clock, Instagram, Twitter, Linkedin, Youtube, Check, ChevronDown } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Instagram, Youtube, Check, ChevronDown } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
@@ -273,6 +273,12 @@ function ContactInfo() {
     { icon: MapPin, label: 'Studio', value: siteConfig.location },
     { icon: Clock, label: 'Business hours', value: siteConfig.hours },
   ]
+
+  const socials = [
+    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/creativecrew.co.in_?igsh=MXJ2Y29kczBhaDdzOQ==' },
+    { icon: Youtube, label: 'YouTube', href: 'https://youtu.be/sd1JXv_644Y?si=wyoFOJihFjp3e6Yh' },
+  ]
+
   return (
     <div className="flex flex-col gap-4">
       {info.map((it) => {
@@ -300,16 +306,21 @@ function ContactInfo() {
       <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
         <p className="text-[11px] uppercase tracking-wide text-white/40 mb-3">Follow</p>
         <div className="flex items-center gap-2.5">
-          {[Instagram, Twitter, Linkedin, Youtube].map((Icon, i) => (
-
-            <a key={i}
-              href="#"
-              aria-label="Social link"
-              className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"
-            >
-              <Icon size={14} />
-            </a>
-          ))}
+          {socials.map((s) => {
+            const Icon = s.icon
+            return (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={s.label}
+                className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+              >
+                <Icon size={14} />
+              </a>
+            )
+          })}
         </div>
       </div>
     </div>
