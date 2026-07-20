@@ -367,7 +367,7 @@ function Process() {
   const [lottieFailed, setLottieFailed] = useState(false)
   const stepCount = processSteps.length
 
-  const { progress, activeStep } = useScrollPin({
+  const { progress, activeStep, goToStep } = useScrollPin({
     triggerRef: sectionRef,
     pinRef,
     stepCount,
@@ -390,7 +390,7 @@ function Process() {
             <SectionHeading eyebrow="Our process" title="A five-step system," accent="Built to win" align="left" />
           </Reveal>
 
-          {/* ── DESKTOP ── */}
+          {/* ══════════════ DESKTOP — horizontal timeline, unchanged/untouched ══════════════ */}
           <div className="hidden md:flex md:flex-col justify-center min-h-[calc(100vh-160px)]">
             <div className="relative mb-16 max-w-4xl mx-auto w-full">
               <div className="relative h-4">
@@ -406,14 +406,21 @@ function Process() {
                     const isDone = i < activeStep
                     return (
                       <div key={s.n} className="flex justify-center">
-                        <span
-                          className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 ${isActive
-                            ? 'bg-indigo-600 border-indigo-600 scale-125 shadow-[0_0_0_5px_rgba(99,102,241,0.15)]'
-                            : isDone
-                              ? 'bg-indigo-600 border-indigo-600'
-                              : 'bg-white border-[#0a0a12]/15'
-                            }`}
-                        />
+                        <button
+                          type="button"
+                          onClick={() => goToStep?.(i)}
+                          aria-label={`Go to step ${i + 1}: ${s.title}`}
+                          className="relative flex items-center justify-center w-8 h-8 -my-2 cursor-pointer group/dot"
+                        >
+                          <span
+                            className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 group-hover/dot:scale-125 ${isActive
+                                ? 'bg-indigo-600 border-indigo-600 scale-125 shadow-[0_0_0_5px_rgba(99,102,241,0.15)]'
+                                : isDone
+                                  ? 'bg-indigo-600 border-indigo-600'
+                                  : 'bg-white border-[#0a0a12]/15 group-hover/dot:border-indigo-400'
+                              }`}
+                          />
+                        </button>
                       </div>
                     )
                   })}
@@ -425,13 +432,15 @@ function Process() {
                   const isActive = i === activeStep
                   const isDone = i < activeStep
                   return (
-                    <span
+                    <button
+                      type="button"
                       key={s.n}
-                      className={`text-[13px] font-medium text-center px-1 transition-colors duration-300 ${isActive || isDone ? 'text-[#0a0a12]' : 'text-[#0a0a12]/35'
+                      onClick={() => goToStep?.(i)}
+                      className={`text-[13px] font-medium text-center px-1 transition-colors duration-300 cursor-pointer hover:text-indigo-600 ${isActive || isDone ? 'text-[#0a0a12]' : 'text-[#0a0a12]/35'
                         }`}
                     >
                       {s.title}
-                    </span>
+                    </button>
                   )
                 })}
               </div>
@@ -448,27 +457,31 @@ function Process() {
             </div>
           </div>
 
-          {/* ── MOBILE ── */}
-          <div className="grid md:hidden grid-cols-[32px_1fr] gap-4">
-            <div className="relative flex flex-col items-center pt-1">
-              <div className="absolute top-1 bottom-1 left-1/2 -translate-x-1/2 w-[2px] bg-[#0a0a12]/10 rounded-full overflow-hidden">
+          {/* ══════════════ MOBILE — vertical timeline, dot-centered line ══════════════ */}
+          <div className="grid md:hidden grid-cols-[24px_1fr] gap-4">
+            <div className="relative flex justify-center" style={{ minHeight: 460 }}>
+              {/* line — positioned to start/end exactly at first/last dot's center (dot = 12px, so 6px inset) */}
+              <div
+                className="absolute left-1/2 -translate-x-1/2 w-[2px] bg-[#0a0a12]/10 rounded-full overflow-hidden"
+                style={{ top: 6, bottom: 6 }}
+              >
                 <div
                   className="w-full bg-gradient-to-b from-indigo-500 to-violet-500 rounded-full transition-[height] duration-300 ease-out"
                   style={{ height: `${fillPercent}%` }}
                 />
               </div>
-              <div className="relative flex flex-col justify-between h-full py-1" style={{ minHeight: 480 }}>
+              <div className="relative flex flex-col justify-between h-full">
                 {processSteps.map((s, i) => {
                   const isActive = i === activeStep
                   const isDone = i < activeStep
                   return (
                     <span
                       key={s.n}
-                      className={`block w-3.5 h-3.5 rounded-full border-2 transition-all duration-300 bg-white ${isActive
-                        ? 'border-indigo-600 bg-indigo-600 scale-125 shadow-[0_0_0_4px_rgba(99,102,241,0.15)]'
-                        : isDone
-                          ? 'border-indigo-600 bg-indigo-600'
-                          : 'border-[#0a0a12]/15'
+                      className={`block w-3 h-3 rounded-full border-2 transition-all duration-300 bg-white ${isActive
+                          ? 'border-indigo-600 bg-indigo-600 scale-125 shadow-[0_0_0_4px_rgba(99,102,241,0.15)]'
+                          : isDone
+                            ? 'border-indigo-600 bg-indigo-600'
+                            : 'border-[#0a0a12]/15'
                         }`}
                     />
                   )
@@ -477,7 +490,7 @@ function Process() {
             </div>
 
             <div className="flex flex-col gap-5">
-              <div className="rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-4 overflow-hidden w-full max-w-[320px] aspect-square relative mx-auto">
+              <div className="rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-4 overflow-hidden w-full max-w-[300px] aspect-square relative mx-auto">
                 <LottiePanel
                   active={active}
                   lottieFailed={lottieFailed}
@@ -499,10 +512,16 @@ function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compac
   return (
     <div
       className={`relative w-full h-full ${compact
-        ? ''
-        : 'rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-8 sm:p-10 overflow-hidden max-w-[420px] md:max-w-[560px] mx-auto md:mx-0 aspect-square'
+          ? ''
+          : 'rounded-3xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-[#0a0a12]/5 p-8 sm:p-10 overflow-hidden max-w-[420px] md:max-w-[560px] mx-auto md:mx-0 aspect-square'
         }`}
     >
+      {!compact && (
+        <span className="absolute -top-2 -left-2 text-[140px] font-black text-[#0a0a12]/[0.04] leading-none select-none pointer-events-none">
+          {active.n}
+        </span>
+      )}
+
       <div className="w-full h-full relative">
         <AnimatePresence mode="wait">
           <motion.div
