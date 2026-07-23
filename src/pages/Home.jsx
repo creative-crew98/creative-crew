@@ -116,13 +116,13 @@ function Hero() {
               Book free consultation
               <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <Link
+            {/* <Link
               to="/portfolio"
               className="group inline-flex items-center gap-1.5 text-violet-300 text-[14px] font-medium px-4 py-2 rounded-full border border-violet-400/30 hover:text-violet-200 hover:border-violet-400/60 transition-colors"
             >
               Explore portfolio
               <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
+            </Link> */}
           </div>
 
           {/* Social proof: avatar stack + rating, more premium than bare stat row */}
